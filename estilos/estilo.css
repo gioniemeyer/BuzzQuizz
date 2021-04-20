@@ -39,7 +39,7 @@ body {
     text-align: center;
     color: #B9B9B9;
     font-size: 20px;
-    Line height: 24px;
+    line-height: 24px;
 }
 
 .quizzes {
@@ -55,10 +55,16 @@ ul {
     justify-content: space-between;
 }
 
+li{
+   position: relative;  
+}
+
 img {
     width: 200px;
+   
     border-radius: 5px;
     margin-bottom: 5px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%);
 }
 
 button {
@@ -72,4 +78,12 @@ button {
     color:#EC362D;
     font-size: 20px;
     
+}
+
+.titulo{
+    position: absolute;
+    left: 10px;
+    top: 75px;
+    font-size: 11px;
+    color:#fff;
 }
