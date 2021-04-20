@@ -33,5 +33,11 @@ function escolherQuizz(quizzClicado) {
 
 function abrirQuizz(resposta) {
     const container = document.querySelector(".container");
-    container.innerHTML = "";    
+    container.innerHTML = "";
+
+    console.log(resposta.data.title);
+    // for(let i = 0; i < resposta.data.length; i++) {
+    //     console.log()
+    // }
+
 }
