@@ -27,22 +27,38 @@ body {
 
 .meus-quizzes {
     margin-top: 80px;
-    width: 45%;
+    width: 46%;
     height: 180px;
     border: 1px dashed #d4d4d4;
+    text-align: center;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .quizzes {
     margin-top: 80px;
-    width: 45%;
+    width: 46%;
 
 }
 
 ul {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 15px;
+    justify-content: space-between;
 }
 
 img {
     width: 200px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.button {
+    border: 1px dashed #EC362D;
+    width: 136px;
+    height: 40px;
+    
 }
