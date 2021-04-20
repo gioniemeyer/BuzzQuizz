@@ -98,3 +98,32 @@ button {
     font-size: 23px;
     margin-top: 40px;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    ;
+}
+
+input {
+    width: 80%;
+    height: 46px;
+    margin-bottom: 10px;
+    padding: 0 20px;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+}
+
+input:first-child {
+    margin-top: 15px;
+}
+
+input:placeholder-shown {
+    font-style: italic;
+    font-size: 19px;
+    color: #bababa;
+}

@@ -63,10 +63,14 @@ function criarQuizz() {
         <h2 class="titulo-secao"> <strong> Comece pelo começo </strong> </h2>
 
         <form>
-            tatata
+        <input placeholder="Título do seu quizz"></input>
+        <input placeholder="URL da imagem do seu quizz"></input>
+        <input placeholder="Quantidade de perguntas do Quizz"></input>
+        <input placeholder="Quantidade de níveis do Quizz"></input>
+
         </form>
 
-        <button onclick= "mudar-secao()">Criar Quizz</button>
+        <button onclick= "mudar-secao()">Presseguir para criar perguntas</button>
 
     `;
 
