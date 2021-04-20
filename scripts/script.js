@@ -14,7 +14,10 @@ function renderizandoQuizzes(resposta) {
     for(let i = 0; i < resposta.data.length; i++) {
         ul.innerHTML += `
             <li>
-                <img src="${resposta.data[i].image}" alt="">
+                <a href="#">
+                    <p class="titulo">${resposta.data[i].title}</p>
+                    <img src="${resposta.data[i].image}" alt="">
+                </a>
             </li>
         `
     }
