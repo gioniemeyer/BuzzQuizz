@@ -1,5 +1,5 @@
 body {
-    background-color: #E5E5E5;
+    background-color: #fafafa;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -18,3 +18,31 @@ body {
     align-items: center;
 }
 
+.container {
+    margin-top: 70px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.meus-quizzes {
+    margin-top: 80px;
+    width: 45%;
+    height: 180px;
+    border: 1px dashed #d4d4d4;
+}
+
+.quizzes {
+    margin-top: 80px;
+    width: 45%;
+
+}
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+img {
+    width: 200px;
+}
