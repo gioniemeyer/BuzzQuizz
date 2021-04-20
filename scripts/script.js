@@ -54,12 +54,23 @@ function abrirQuizz(resposta) {
                 <img src="${respostas[i].image}" alt="">
             `;
         }
-
     }
     // renderizarPerguntas();
 }
 
+function criarQuizz() {
+    container.innerHTML = `
+        <h2 class="titulo-secao"> <strong> Comece pelo começo </strong> </h2>
 
+        <form>
+            tatata
+        </form>
+
+        <button onclick= "mudar-secao()">Criar Quizz</button>
+
+    `;
+
+}
 
 
 

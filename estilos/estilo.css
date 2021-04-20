@@ -93,3 +93,8 @@ button {
     line-height: 18px;
     text-overflow: ellipsis;
 }
+
+.titulo-secao {
+    font-size: 23px;
+    margin-top: 40px;
+}
