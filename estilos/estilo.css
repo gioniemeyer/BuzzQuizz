@@ -23,18 +23,23 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-bottom: 100px;
 }
 
 .meus-quizzes {
     margin-top: 80px;
     width: 46%;
-    height: 180px;
+    height: 165px;
     border: 1px dashed #d4d4d4;
-    text-align: center;
-    padding: 40px;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #B9B9B9;
+    font-size: 20px;
+    Line height: 24px;
 }
 
 .quizzes {
@@ -56,9 +61,15 @@ img {
     margin-bottom: 5px;
 }
 
-.button {
+button {
     border: 1px dashed #EC362D;
+    border-radius: 50px;
     width: 136px;
     height: 40px;
+    text-decoration: none;
+    margin-top: 23px;
+    background: transparent;
+    color:#EC362D;
+    font-size: 20px;
     
 }
