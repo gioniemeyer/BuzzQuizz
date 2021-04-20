@@ -58,7 +58,6 @@ ul {
 li{
    position: relative;
    word-break: break-all;
-   background-color: pink;
    width: 31%;
    height: 181px;
    margin-bottom: 5px;
@@ -93,5 +92,4 @@ button {
     color:#fff;
     line-height: 18px;
     text-overflow: ellipsis;
-
 }

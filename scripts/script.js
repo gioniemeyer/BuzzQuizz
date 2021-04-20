@@ -1,14 +1,16 @@
+const ul = document.querySelector('ul');
+const container = document.querySelector(".container");
+
+
 pegandoQuizzes();
 
 function pegandoQuizzes() {
 
     const promessa = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes");
-promessa.then(renderizandoQuizzes);
-
+    promessa.then(renderizandoQuizzes);
 }
 
 function renderizandoQuizzes(resposta) {
-    const ul = document.querySelector('ul');
 
     ul.innerHTML = "";
 
@@ -32,12 +34,61 @@ function escolherQuizz(quizzClicado) {
 }
 
 function abrirQuizz(resposta) {
-    const container = document.querySelector(".container");
     container.innerHTML = "";
+    container.innerHTML += resposta.data.title;
+    
+    const perguntas = resposta.data.questions;
 
-    console.log(resposta.data.title);
-    // for(let i = 0; i < resposta.data.length; i++) {
-    //     console.log()
-    // }
+    for(let i = 0; i < perguntas.length; i++) {
+        console.log(perguntas[i]);
+        container.innerHTML += `
+        <br>
+            ${perguntas[i].title}
+        `;
 
+        const respostas = perguntas[i].answers;
+        for (let i = 0; i < respostas.length; i++) {
+            container.innerHTML += `
+            <br>
+                ${respostas[i].text}
+                <img src="${respostas[i].image}" alt="">
+            `;
+        }
+
+    }
+    // renderizarPerguntas();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function renderizarPerguntas() {
+
+//     const perguntas = resposta.data.questions;
+
+//     for(let i = 0; i < perguntas.length; i++) {
+//         console.log(perguntas[i]);
+//         container.innerHTML += `
+//         <br>
+//             ${perguntas[i].title}
+//         `;
+//     }
+// }
