@@ -107,7 +107,7 @@ form {
     align-items: center;
     background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
-    ;
+    margin-top: 30px;
 }
 
 input {
@@ -137,7 +137,6 @@ input:placeholder-shown {
     color: #fff;
 
 }
-
 
 .perguntas {
     background-color: #E5E5E5;
@@ -219,4 +218,16 @@ input:placeholder-shown {
 
 .opcoes li {
     margin-right: 0px;
+}
+
+.pergunta-fechada {
+    display: flex;
+    width: 70%;
+    height: 74px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    margin-top: 30px;
+    font-size: 20px;
 }

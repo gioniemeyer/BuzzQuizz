@@ -1,6 +1,8 @@
 const ul = document.querySelector('ul');
 const container = document.querySelector(".container");
-
+let meuQuizz = {};
+const questions = [];
+const levels = [];
 
 pegandoQuizzes();
 
@@ -62,8 +64,9 @@ function criarQuizz() {
 
     renderizarPrimeiraSecao()
 
-    guardarInfosPrimeiraSecao ()
-
+    if(validacao) {
+        guardarInfosPrimeiraSecao ()
+    }
 }
 
 function renderizarPrimeiraSecao() {
@@ -83,33 +86,57 @@ function renderizarPrimeiraSecao() {
 }
 
 function segundaSecao() {
+
+    validacao();
+
     container.innerHTML = "";
 
     container.innerHTML = `
     <h2 class="titulo-secao"> <strong> Crie suas perguntas </strong> </h2>`
 
-    for(let i = 0; i < 3; i++) {     //depois mudar esse 3 para variar com o qtd-perguntas
+    for(let i = 0; i < questions.length; i++) {     //depois mudar esse 3 para variar com o qtd-perguntas
         container.innerHTML += `
-            <form>
-                <input class="titulo-quizz" placeholder="Título do seu quizz"></input>
-                <input class="imagem-quizz" placeholder="URL da imagem do seu quizz"></input>
-                <input class="qtd-perguntas" placeholder="Quantidade de perguntas do Quizz"></input>
-                <input class="qtd-niveis" placeholder="Quantidade de níveis do Quizz"></input>
-            </form>
 
-            <button class="criar-quizz" onclick= "segundaSecao()">Presseguir para criar níveis</button>
+            <div class="pergunta-fechada" onclick="abrirPergunta()">
+                <strong>Pergunta ${i + 1}</strong>
+                <ion-icon name="create-outline"></ion-icon>
+            </div>
         `
     }
+
+    container.innerHTML += `
+        <button class="criar-quizz" onclick= "segundaSecao()">Prosseguir para criar níveis</button>
+    `
 ;
 }
 
 
-function guardarInfosPrimeiraSecao () {
-    const tituloQuizz = document.querySelector(".titulo-quizz");
-    const imagemQuizz = document.querySelector(".imagem-quizz");
-    const qtdPerguntas = document.querySelector(".qtd-perguntas");
-    const qtdNiveis = document.querySelector(".qtd-niveis");
+function validacao() {
+    let tituloQuizz = document.querySelector(".titulo-quizz").value;
+    let imagemQuizz = document.querySelector(".imagem-quizz").value;
+    let qtdPerguntas = document.querySelector(".qtd-perguntas").value;
+    let qtdNiveis = document.querySelector(".qtd-niveis").value;
 
+    if(tituloQuizz !== null, imagemQuizz !== null, qtdPerguntas !== null, qtdNiveis !== null) {
+        questions.length = qtdPerguntas;
+        levels.length = qtdNiveis;
+
+        meuQuizz = {title: tituloQuizz, image: imagemQuizz};
+        alert(meuQuizz);
+        alert(qtdPerguntas)
+    }
+}
+
+function guardarInfosPrimeiraSecao () {
+    // const tituloQuizz = document.querySelector(".titulo-quizz").value;
+    // const imagemQuizz = document.querySelector(".imagem-quizz").value;
+    // const qtdPerguntas = document.querySelector(".qtd-perguntas").value;
+    // const qtdNiveis = document.querySelector(".qtd-niveis").value;
+
+    // meuQuizz = {title: tituloQuizz,
+	// image: imagemQuizz}
+
+    // console.log(meuQuizz);
 }
 
 
