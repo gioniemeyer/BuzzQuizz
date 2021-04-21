@@ -127,3 +127,12 @@ input:placeholder-shown {
     font-size: 19px;
     color: #bababa;
 }
+
+.criar-quizz {
+    background-color: #EC362D;
+    border-radius: 15px;
+    width: 360px;
+    height: 54px;
+    color: #fff;
+
+}

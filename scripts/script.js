@@ -59,27 +59,58 @@ function abrirQuizz(resposta) {
 }
 
 function criarQuizz() {
+
+    renderizarPrimeiraSecao()
+
+    guardarInfosPrimeiraSecao ()
+
+}
+
+function renderizarPrimeiraSecao() {
     container.innerHTML = `
         <h2 class="titulo-secao"> <strong> Comece pelo começo </strong> </h2>
 
         <form>
-        <input placeholder="Título do seu quizz"></input>
-        <input placeholder="URL da imagem do seu quizz"></input>
-        <input placeholder="Quantidade de perguntas do Quizz"></input>
-        <input placeholder="Quantidade de níveis do Quizz"></input>
-
+            <input class="titulo-quizz" placeholder="Título do seu quizz"></input>
+            <input class="imagem-quizz" placeholder="URL da imagem do seu quizz"></input>
+            <input class="qtd-perguntas" placeholder="Quantidade de perguntas do Quizz"></input>
+            <input class="qtd-niveis" placeholder="Quantidade de níveis do Quizz"></input>
         </form>
 
-        <button onclick= "mudar-secao()">Presseguir para criar perguntas</button>
+        <button class="criar-quizz" onclick= "segundaSecao()">Presseguir para criar perguntas</button>
+    `
+;
+}
 
-    `;
+function segundaSecao() {
+    container.innerHTML = "";
 
+    container.innerHTML = `
+    <h2 class="titulo-secao"> <strong> Crie suas perguntas </strong> </h2>`
+
+    for(let i = 0; i < 3; i++) {     //depois mudar esse 3 para variar com o qtd-perguntas
+        container.innerHTML += `
+            <form>
+                <input class="titulo-quizz" placeholder="Título do seu quizz"></input>
+                <input class="imagem-quizz" placeholder="URL da imagem do seu quizz"></input>
+                <input class="qtd-perguntas" placeholder="Quantidade de perguntas do Quizz"></input>
+                <input class="qtd-niveis" placeholder="Quantidade de níveis do Quizz"></input>
+            </form>
+
+            <button class="criar-quizz" onclick= "segundaSecao()">Presseguir para criar níveis</button>
+        `
+    }
+;
 }
 
 
+function guardarInfosPrimeiraSecao () {
+    const tituloQuizz = document.querySelector(".titulo-quizz");
+    const imagemQuizz = document.querySelector(".imagem-quizz");
+    const qtdPerguntas = document.querySelector(".qtd-perguntas");
+    const qtdNiveis = document.querySelector(".qtd-niveis");
 
-
-
+}
 
 
 
