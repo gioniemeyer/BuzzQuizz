@@ -63,10 +63,8 @@ function abrirQuizz(resposta) {
 function criarQuizz() {
 
     renderizarPrimeiraSecao()
+    validacao();
 
-    if(validacao) {
-        guardarInfosPrimeiraSecao ()
-    }
 }
 
 function renderizarPrimeiraSecao() {
@@ -97,7 +95,7 @@ function segundaSecao() {
     for(let i = 0; i < questions.length; i++) {     //depois mudar esse 3 para variar com o qtd-perguntas
         container.innerHTML += `
 
-            <div class="pergunta-fechada" onclick="abrirPergunta()">
+            <div class="pergunta-fechada${i + 1}" onclick="abrirPergunta()">
                 <strong>Pergunta ${i + 1}</strong>
                 <ion-icon name="create-outline"></ion-icon>
             </div>
@@ -127,18 +125,18 @@ function validacao() {
     }
 }
 
-function guardarInfosPrimeiraSecao () {
-    // const tituloQuizz = document.querySelector(".titulo-quizz").value;
-    // const imagemQuizz = document.querySelector(".imagem-quizz").value;
-    // const qtdPerguntas = document.querySelector(".qtd-perguntas").value;
-    // const qtdNiveis = document.querySelector(".qtd-niveis").value;
-
-    // meuQuizz = {title: tituloQuizz,
-	// image: imagemQuizz}
-
-    // console.log(meuQuizz);
+function abrirPergunta(pergunta) {
+    const perguntaAberta = document.querySelector(pergunta);
+    alert(perguntaAberta);
+    // perguntaAberta.innerhtml = `    
+    //     <form>
+    //         <input class="titulo-quizz" placeholder="Título do seu quizz"></input>
+    //         <input class="imagem-quizz" placeholder="URL da imagem do seu quizz"></input>
+    //         <input class="qtd-perguntas" placeholder="Quantidade de perguntas do Quizz"></input>
+    //         <input class="qtd-niveis" placeholder="Quantidade de níveis do Quizz"></input>
+    //     </form>
+// `
 }
-
 
 
 
