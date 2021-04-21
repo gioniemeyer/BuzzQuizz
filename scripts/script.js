@@ -95,7 +95,7 @@ function segundaSecao() {
     for(let i = 0; i < questions.length; i++) {     //depois mudar esse 3 para variar com o qtd-perguntas
         container.innerHTML += `
 
-            <div class="pergunta-fechada${i + 1}" onclick="abrirPergunta()">
+            <div class='pergunta-fechada p-${i + 1}' onclick='abrirPergunta(p-${i + 1})'>
                 <strong>Pergunta ${i + 1}</strong>
                 <ion-icon name="create-outline"></ion-icon>
             </div>
@@ -120,14 +120,12 @@ function validacao() {
         levels.length = qtdNiveis;
 
         meuQuizz = {title: tituloQuizz, image: imagemQuizz};
-        alert(meuQuizz);
-        alert(qtdPerguntas)
     }
 }
 
 function abrirPergunta(pergunta) {
-    const perguntaAberta = document.querySelector(pergunta);
-    alert(perguntaAberta);
+    // const perguntaAberta = document.querySelector(pergunta);
+    // alert(pergunta);
     // perguntaAberta.innerhtml = `    
     //     <form>
     //         <input class="titulo-quizz" placeholder="Título do seu quizz"></input>
