@@ -118,6 +118,7 @@ input {
     padding: 0 20px;
     border: 1px solid #d1d1d1;
     border-radius: 5px;
+    outline-color: #D1D1D1;
 }
 
 input:first-child {
