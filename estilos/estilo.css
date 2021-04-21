@@ -1,6 +1,7 @@
 body {
     background-color: #fafafa;
     font-family: 'Roboto', sans-serif;
+    
 }
 
 .topo {
@@ -55,13 +56,13 @@ ul {
     justify-content: flex-start;
 }
 
-li{
-   position: relative;
-   word-break: break-all;
-   width: 31%;
-   height: 181px;
-   margin-bottom: 5px;
-   margin-right: 15px;
+li {
+    position: relative;
+    word-break: break-all;
+    width: 31%;
+    height: 181px;
+    margin-bottom: 5px;
+    margin-right: 15px;
 }
 
 img {
@@ -79,17 +80,17 @@ button {
     text-decoration: none;
     margin-top: 23px;
     background: transparent;
-    color:#EC362D;
+    color: #EC362D;
     font-size: 20px;
-    
+
 }
 
-.titulo{
+.titulo {
     position: absolute;
     left: 10px;
     bottom: 10px;
     font-size: 19px;
-    color:#fff;
+    color: #fff;
     line-height: 18px;
     text-overflow: ellipsis;
 }
@@ -135,6 +136,88 @@ input:placeholder-shown {
     height: 54px;
     color: #fff;
 
+}
+
+.perguntas {
+    background-color: #E5E5E5;
+}
+.containerPerguntas {
+    margin-top: 70px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cabecalho {
+    width: 100%;
+    height: 230px;
+    background-image: url("../midias/Rectangle 42.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 35px;
+    line-height: 46px;
+}
+
+.caixaPergunta {
+    width: 759px;
+    height: 676px;
+    background:#fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items:center ;
+    justify-content: center;
+    padding:0px 35px;
+    
+}
+
+.pergunta {
+    width: 100%;
+    height: 138px;
+    background: #434CA0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#fff;
+    font-size: 23px;
+    line-height: 27px; 
+    margin-top: 35px;   
+}
+
+.opcoes{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 0px;
+    font-weight: bold;
+   
+}
+
+.opcao {
+    width: 365px;
+    height: 185px;
+    margin-bottom: 70px;
+    
+}
+
+.opcao img{
+    margin-bottom: 20px;
+    border-radius: 0px;
+    background: none;
+}
+
+.opcoes li {
+    margin-right: 0px;
 }
 
 .pergunta-fechada {
