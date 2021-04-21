@@ -3,6 +3,7 @@ const container = document.querySelector(".container");
 let meuQuizz = {};
 const questions = [];
 const levels = [];
+const perguntas  = document.querySelector(".perguntas");
 
 pegandoQuizzes();
 
@@ -29,36 +30,47 @@ function renderizandoQuizzes(resposta) {
 }
 
 function escolherQuizz(quizzClicado) {
-    console.log(quizzClicado);
     const promessa = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes/${quizzClicado}`);
 
     promessa.then(abrirQuizz);
 }
 
 function abrirQuizz(resposta) {
+
     container.innerHTML = "";
-    container.innerHTML += resposta.data.title;
+    perguntas.innerHTML = "";
+    perguntas.innerHTML += `
+        <div class="containerPerguntas">
+            <div class="cabecalho">
+                <p>${resposta.data.title}</p>
+            </div>
+            <div class="caixaPergunta">`    
     
-    const perguntas = resposta.data.questions;
+    const perguntasQuizz = resposta.data.questions;
 
-    for(let i = 0; i < perguntas.length; i++) {
-        console.log(perguntas[i]);
+    for(let i = 0; i < perguntasQuizz.length; i++) {
+        console.log(perguntasQuizz[i]);
         container.innerHTML += `
-        <br>
-            ${perguntas[i].title}
-        `;
-
-        const respostas = perguntas[i].answers;
+                <div class="pergunta">${perguntasQuizz[i].title}</div>
+                <ul class="opcoes">`
+        const respostas = perguntasQuizz[i].answers;
         for (let i = 0; i < respostas.length; i++) {
             container.innerHTML += `
-            <br>
-                ${respostas[i].text}
-                <img src="${respostas[i].image}" alt="">
+                    <li class="opcao">
+                        <img src="${respostas[i].image}" alt=""/>
+                        <p>${respostas[i].text}</p>
+                    </li>
             `;
         }
+        perguntas.innerHTML += `
+                </ul>
+            </div>
+        </div>`      
     }
-    // renderizarPerguntas();
 }
+
+
+
 
 function criarQuizz() {
 
@@ -95,7 +107,7 @@ function segundaSecao() {
     for(let i = 0; i < questions.length; i++) {     //depois mudar esse 3 para variar com o qtd-perguntas
         container.innerHTML += `
 
-            <div class='pergunta-fechada p-${i + 1}' onclick='abrirPergunta(p-${i + 1})'>
+            <div class='pergunta-fechada p-${i + 1}' onclick='abrirPergunta()'>
                 <strong>Pergunta ${i + 1}</strong>
                 <ion-icon name="create-outline"></ion-icon>
             </div>
@@ -123,7 +135,8 @@ function validacao() {
     }
 }
 
-function abrirPergunta(pergunta) {
+function abrirPergunta() {
+    alert("falta fazer")
     // const perguntaAberta = document.querySelector(pergunta);
     // alert(pergunta);
     // perguntaAberta.innerhtml = `    
