@@ -70,8 +70,6 @@ function abrirQuizz(resposta) {
 }
 
 
-
-
 function criarQuizz() {
 
     renderizarPrimeiraSecao()
