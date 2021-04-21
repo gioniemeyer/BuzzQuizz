@@ -135,22 +135,17 @@ function validacao() {
 
 function abrirPergunta() {
     alert("falta fazer")
-    // const perguntaAberta = document.querySelector(pergunta);
-    // alert(pergunta);
-    // perguntaAberta.innerhtml = `    
-    //     <form>
-    //         <input class="titulo-quizz" placeholder="Título do seu quizz"></input>
-    //         <input class="imagem-quizz" placeholder="URL da imagem do seu quizz"></input>
-    //         <input class="qtd-perguntas" placeholder="Quantidade de perguntas do Quizz"></input>
-    //         <input class="qtd-niveis" placeholder="Quantidade de níveis do Quizz"></input>
-    //     </form>
-// `
+    const perguntaAberta = document.querySelector(pergunta);
+    alert(pergunta);
+    perguntaAberta.innerhtml = `    
+        <form>
+            <input class="textoPergunta" placeholder="Texto da pergunta"></input>
+            <input class="corFundoPergunta" placeholder="Cor de fundo da pergunta"></input>
+            <input class="qtd-perguntas" placeholder="Quantidade de perguntas do Quizz"></input>
+            <input class="qtd-niveis" placeholder="Quantidade de níveis do Quizz"></input>
+       </form>
+
 }
-
-
-
-
-
 
 
 
