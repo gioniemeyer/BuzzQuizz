@@ -38,10 +38,6 @@ function escolherQuizz(quizzClicado) {
     promessa.then(teste);
 }
 
-
-function teste(resposta) {
-    const caixaPergunta = document.querySelector('.caixaPergunta');
-
     containerMaior.innerHTML = `
         <div class="perguntas">
             <div class="cabecalho">
@@ -68,7 +64,7 @@ function teste(resposta) {
                     </li>`;
                 }
             }  
-}
+
 
 function marcarOpcao(isTrue) {
     if(isTrue) {
@@ -109,7 +105,6 @@ function segundaSecao() {
 
     for (let i = 0; i < questions.length; i++) {
         container.innerHTML += `
-
             <div class=' pergunta-fechada p-${i + 1}' onclick='abrirPergunta(this)'>
                 <strong>Pergunta ${i + 1}</strong>
                 <ion-icon name="create-outline"></ion-icon>
