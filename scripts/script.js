@@ -44,6 +44,7 @@ function teste(resposta) {
     containerMaior.innerHTML = `
         <div class="perguntas">
             <div class="cabecalho">
+                <img src="${resposta.data.image}" /> 
                 <p>${resposta.data.title}</p>
             </div>
             <div class="caixaPergunta"></div>
