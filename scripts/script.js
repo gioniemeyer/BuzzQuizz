@@ -4,6 +4,8 @@ let meuQuizz = {};
 const questions = [];
 const levels = [];
 const perguntas  = document.querySelector(".perguntas");
+const containerMaior = document.querySelector(".container-maior");
+
 
 pegandoQuizzes();
 
@@ -36,40 +38,40 @@ function escolherQuizz(quizzClicado) {
 }
 
 function abrirQuizz(resposta) {
+    console.log(resposta.data)
 
-    container.innerHTML = "";
-    perguntas.innerHTML = "";
-    perguntas.innerHTML += `
+    containerMaior.innerHTML = `
+    <div class="perguntas">
         <div class="containerPerguntas">
             <div class="cabecalho">
                 <p>${resposta.data.title}</p>
-            </div>
-            <div class="caixaPergunta">`    
-    
-    const perguntasQuizz = resposta.data.questions;
-
-    for(let i = 0; i < perguntasQuizz.length; i++) {
-        console.log(perguntasQuizz[i]);
-        container.innerHTML += `
-                <div class="pergunta">${perguntasQuizz[i].title}</div>
-                <ul class="opcoes">`
-        const respostas = perguntasQuizz[i].answers;
-        for (let i = 0; i < respostas.length; i++) {
-            container.innerHTML += `
-                    <li class="opcao">
-                        <img src="${respostas[i].image}" alt=""/>
-                        <p>${respostas[i].text}</p>
-                    </li>
-            `;
-        }
-        perguntas.innerHTML += `
-                </ul>
-            </div>
-        </div>`      
-    }
+            </div>`
+            const perguntasQuizz = resposta.data.questions;
+            for(let i = 0; i < perguntasQuizz.length; i++) {
+                containerMaior.innerHTML +=
+                    `<div class="caixaPergunta">
+                        <div class="pergunta">${perguntasQuizz[i].title}</div>
+                        <ul class="opcoes">`
+                        const respostasPergunta = perguntasQuizz[i].answers;
+                        for(let index = 0; index < respostasPergunta.length; index++) { 
+                            containerMaior.innerHTML += `
+                            <li onclick="marcarOpcao(this)" class="opcao">
+                                <img src="${respostasPergunta[index].image}" alt=""/>
+                                <p>${respostasPergunta[index].text}</p>
+                            </li>`
+                        }
+            }
+            contaicontainerMaior.innerHTML += `
+                        </ul>
+                    </div>
+                </div>
+            </div>`
 }
 
-
+function marcarOpcao(element) {
+    console.log(element);
+    // colocar um if para ver se a resposta clicada ta certa
+}
 
 
 function criarQuizz() {
@@ -91,8 +93,7 @@ function renderizarPrimeiraSecao() {
         </form>
 
         <button class="criar-quizz" onclick= "segundaSecao()">Presseguir para criar perguntas</button>
-    `
-;
+    `;
 }
 
 function segundaSecao() {
@@ -104,9 +105,8 @@ function segundaSecao() {
     container.innerHTML = `
     <h2 class="titulo-secao"> <strong> Crie suas perguntas </strong> </h2>`
 
-    for(let i = 0; i < questions.length; i++) {     //depois mudar esse 3 para variar com o qtd-perguntas
+    for(let i = 0; i < questions.length; i++) {     
         container.innerHTML += `
-
             <div class='pergunta-fechada p-${i + 1}' onclick='abrirPergunta()'>
                 <strong>Pergunta ${i + 1}</strong>
                 <ion-icon name="create-outline"></ion-icon>
@@ -116,8 +116,7 @@ function segundaSecao() {
 
     container.innerHTML += `
         <button class="criar-quizz" onclick= "segundaSecao()">Prosseguir para criar níveis</button>
-    `
-;
+    `;
 }
 
 
@@ -150,27 +149,3 @@ function abrirPergunta() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-// function renderizarPerguntas() {
-
-//     const perguntas = resposta.data.questions;
-
-//     for(let i = 0; i < perguntas.length; i++) {
-//         console.log(perguntas[i]);
-//         container.innerHTML += `
-//         <br>
-//             ${perguntas[i].title}
-//         `;
-//     }
-// }
