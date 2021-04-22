@@ -38,6 +38,9 @@ function escolherQuizz(quizzClicado) {
     promessa.then(teste);
 }
 
+function teste(resposta) {
+    const caixaPergunta = document.querySelector('.caixaPergunta');
+
     containerMaior.innerHTML = `
         <div class="perguntas">
             <div class="cabecalho">
@@ -64,7 +67,7 @@ function escolherQuizz(quizzClicado) {
                     </li>`;
                 }
             }  
-
+}
 
 function marcarOpcao(isTrue) {
     if(isTrue) {
