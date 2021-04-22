@@ -55,7 +55,7 @@ function abrirQuizz(resposta) {
                         const respostasPergunta = perguntasQuizz[i].answers;
                         for(let index = 0; index < respostasPergunta.length; index++) { 
                             containerMaior.innerHTML += `
-                            <li onclick="marcarOpcao(this)" class="opcao">
+                            <li class="${respostasPergunta[index].isCorrectAnswer} opcao" onclick="marcarOpcao(${respostasPergunta[index].isCorrectAnswer})">
                                 <img src="${respostasPergunta[index].image}" alt=""/>
                                 <p>${respostasPergunta[index].text}</p>
                             </li>`
@@ -68,9 +68,10 @@ function abrirQuizz(resposta) {
             </div>`
 }
 
-function marcarOpcao(element) {
-    console.log(element);
-    // colocar um if para ver se a resposta clicada ta certa
+function marcarOpcao(isTrue) {
+    if(isTrue) {
+        alert("certo!");
+    }
 }
 
 
