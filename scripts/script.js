@@ -40,7 +40,6 @@ function escolherQuizz(quizzClicado) {
 
 function abrirQuizz(resposta) {
     console.log(resposta.data)
-
     containerMaior.innerHTML = `
     <div class="perguntas">
         <div class="containerPerguntas">
@@ -48,12 +47,16 @@ function abrirQuizz(resposta) {
                 <p>${resposta.data.title}</p>
             </div>`
             const perguntasQuizz = resposta.data.questions;
+
+
             for(let i = 0; i < perguntasQuizz.length; i++) {
                 containerMaior.innerHTML +=
                     `<div class="caixaPergunta">
                         <div class="pergunta">${perguntasQuizz[i].title}</div>
                         <ul class="opcoes">`
                         const respostasPergunta = perguntasQuizz[i].answers;
+
+
                         for(let index = 0; index < respostasPergunta.length; index++) { 
                             containerMaior.innerHTML += `
                             <li class="${respostasPergunta[index].isCorrectAnswer} opcao" onclick="marcarOpcao(${respostasPergunta[index].isCorrectAnswer})">
@@ -62,6 +65,7 @@ function abrirQuizz(resposta) {
                             </li>`
                         }
             }
+
             contaicontainerMaior.innerHTML += `
                         </ul>
                     </div>
