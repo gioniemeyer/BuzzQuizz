@@ -6,6 +6,7 @@ const levels = [];
 const perguntas  = document.querySelector(".perguntas");
 const containerMaior = document.querySelector(".container-maior");
 let numero;
+let qtdNiveis;
 
 
 pegandoQuizzes();
@@ -109,7 +110,7 @@ function segundaSecao() {
 
     for (let i = 0; i < questions.length; i++) {
         container.innerHTML += `
-            <div class=' pergunta-fechada p-${i + 1}' onclick='abrirPergunta(this)'>
+            <div class=' fechado p-${i + 1}' onclick='abrirPergunta(this)'>
                 <strong>Pergunta ${i + 1}</strong>
                 <ion-icon name="create-outline"></ion-icon>
             </div>
@@ -118,7 +119,7 @@ function segundaSecao() {
     }
     
     container.innerHTML += `
-        <button class="criar-quizz" onclick= "segundaSecao()">Prosseguir para criar níveis</button>
+        <button class="criar-quizz" onclick= "terceiraSecao()">Prosseguir para criar níveis</button>
     `;
 }
 
@@ -127,7 +128,7 @@ function validacao() {
     let tituloQuizz = document.querySelector(".titulo-quizz").value;
     let imagemQuizz = document.querySelector(".imagem-quizz").value;
     let qtdPerguntas = document.querySelector(".qtd-perguntas").value;
-    let qtdNiveis = document.querySelector(".qtd-niveis").value;
+    qtdNiveis = document.querySelector(".qtd-niveis").value;
 
     if (tituloQuizz !== null, imagemQuizz !== null, qtdPerguntas !== null, qtdNiveis !== null) {
         questions.length = qtdPerguntas;
@@ -141,7 +142,6 @@ function validacao() {
 }
 
 function abrirPergunta(clicado) {
-    alert("falta fazer")
     const perguntaAberta = clicado;
     perguntaAberta.classList.add('dentro')
     console.log(perguntaAberta);
@@ -158,24 +158,78 @@ function abrirPergunta(clicado) {
         </form>
          <h2 class="titulo-secao"> <strong> Respostas incorretas </strong> </h2>
          <form>
-           <input class="RespostaIncorreta" placeholder="Resposta Incorreta 1"></input>
-           <input class="ImagemOpcao" placeholder="URL da imagem 1"></input>
+           <input class="RespostaIncorreta1" placeholder="Resposta Incorreta 1"></input>
+           <input class="ImagemOpcao1" placeholder="URL da imagem 1"></input>
 
-          <input class="RespostaIncorreta" placeholder="Resposta Incorreta 2"></input>
-          <input class="ImagemOpcao" placeholder="URL da imagem 2"></input>
+          <input class="RespostaIncorreta2" placeholder="Resposta Incorreta 2"></input>
+          <input class="ImagemOpcao2" placeholder="URL da imagem 2"></input>
 
-          <input class="RespostaIncorreta" placeholder="Resposta Incorreta 3"></input>
-          <input class="ImagemOpcao" placeholder="URL da imagem 3"></input>
+          <input class="RespostaIncorreta3" placeholder="Resposta Incorreta 3"></input>
+          <input class="ImagemOpcao3" placeholder="URL da imagem 3"></input>
         </form>`;
 }
 
 
+function terceiraSecao() {
+
+    validacaoTerceiraSecao();
+
+    container.innerHTML = "";
+
+    container.innerHTML = `
+    <h2 class="titulo-secao"> <strong>Agora, decida os níveis!</strong> </h2>`
+
+    for (let i = 0; i < levels.length; i++) {
+        container.innerHTML += `
+            <div class=' fechado n-${i + 1}' onclick='abrirNivel(this)'>
+                <strong>Nível ${i + 1}</strong>
+                <ion-icon name="create-outline"></ion-icon>
+            </div>
+        `;
+        
+    }
+    
+    container.innerHTML += `
+        <button class="criar-quizz" onclick= "finaliza()">Finalizar Quizz</button>
+    `;
+}
 
 
 
+function validacaoTerceiraSecao() {
+    let RespostaCorreta = document.querySelector(".RespostaCorreta").value;
+    let corFundoPergunta = document.querySelector(".corFundoPergunta").value;
+    let ImagemOpcao = document.querySelector(".ImagemOpcao").value;
+    let RespostaIncorreta1 = document.querySelector(".RespostaIncorreta1").value;
+    let RespostaIncorreta2 = document.querySelector(".RespostaIncorreta2").value;
+    let RespostaIncorreta3 = document.querySelector(".RespostaIncorreta2").value;
 
 
+    if (RespostaCorreta !== null, corFundoPergunta !== null, ImagemOpcao !== null, RespostaIncorreta1 !== null, RespostaIncorreta2 !== null, RespostaIncorreta3 !== null) {
+        // questions.length = qtdPerguntas;
+        levels.length = qtdNiveis;
 
+        // meuQuizz = {
+        //     title: tituloQuizz,
+        //     image: imagemQuizz
+        // };
+    }
+}
+
+function abrirNivel(clicado) {
+    const nivelAberto = clicado;
+    nivelAberto.classList.add('dentro')
+    console.log(nivelAberto);
+    nivelAberto.innerHTML = `   
+         <h2 class="titulo-secao"> <strong> Nível </strong> </h2>      
+         <form>
+            <input class="textoNivel" placeholder="Título do nível"></input>
+            <input class="porcentagemAcertoMinimo" placeholder="% de acerto mínimo"></input>
+            <input class="imagemNivel" placeholder="URL da imagem do nível"></input>
+            <input class="descricao" placeholder="Descrição do nível"></input>
+        </form>
+         `;
+}
 
 
 
