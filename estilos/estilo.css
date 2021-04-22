@@ -4,6 +4,7 @@ body {
     
 }
 
+
 .topo {
     background-color: #EC362D;
     height: 69px;
@@ -24,7 +25,6 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 100px;
 }
 
 .meus-quizzes {
@@ -117,6 +117,7 @@ input {
     padding: 0 20px;
     border: 1px solid #d1d1d1;
     border-radius: 5px;
+    outline-color: #D1D1D1;
 }
 
 input:first-child {
@@ -135,13 +136,13 @@ input:placeholder-shown {
     width: 360px;
     height: 54px;
     color: #fff;
+    margin-bottom: 100px;
 
 }
 
 .perguntas {
+    width: 100%;
     background-color: #E5E5E5;
-}
-.containerPerguntas {
     margin-top: 70px;
     display: flex;
     align-items: center;
@@ -230,4 +231,80 @@ input:placeholder-shown {
     margin-top: 30px;
     font-size: 20px;
     padding: 27px 20px;
+}
+
+.caixaResultado {
+    width: 800px;
+    height: 430px;
+    background:#fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items:center ;
+    justify-content: center;
+    padding: 0px 15px;
+}
+.caixaResultado img {
+    width: 364px;
+    height: 273px;
+    margin-right: 10px;
+}
+
+.resposta {
+    width: 100%;
+    height: 99px;
+    background: #EC362D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#fff;
+    font-size: 23px;
+    line-height: 27px; 
+    
+      
+}
+
+.caixaResposta {
+  display: flex;
+  line-height: 25px;
+  font-size: 19px;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+
+.final {
+    display: flex;
+    flex-direction: column;
+    align-items:center ;
+    justify-content: center;
+    margin-bottom: 135px;
+    margin-top: 50px;
+    background-color:#E5E5E5;
+}
+
+
+.botaoFinal {
+    border-radius: 15px;
+    width: 260px;
+     height: 52px; 
+    text-decoration: none;
+    margin-top: 23px;
+    background: #EC362D;
+    color: #fff;
+    font-size: 20px;
+    border:none;
+    font-size: 21px;
+}
+
+.cinza {
+    color: #818181;
+    background:transparent;
+}
+
+
+.dentro {
+    display: flex;
+    flex-direction: column;
 }

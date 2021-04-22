@@ -5,6 +5,7 @@ const questions = [];
 const levels = [];
 const perguntas  = document.querySelector(".perguntas");
 const containerMaior = document.querySelector(".container-maior");
+let numero;
 
 
 pegandoQuizzes();
@@ -19,7 +20,7 @@ function renderizandoQuizzes(resposta) {
 
     ul.innerHTML = "";
 
-    for(let i = 0; i < resposta.data.length; i++) {
+    for (let i = 0; i < resposta.data.length; i++) {
         ul.innerHTML += `
             <li>
                 <a href="#" onclick="escolherQuizz(${resposta.data[i].id})">
@@ -106,15 +107,17 @@ function segundaSecao() {
     container.innerHTML = `
     <h2 class="titulo-secao"> <strong> Crie suas perguntas </strong> </h2>`
 
-    for(let i = 0; i < questions.length; i++) {     
+    for (let i = 0; i < questions.length; i++) { //depois mudar esse 3 para variar com o qtd-perguntas
         container.innerHTML += `
-            <div class='pergunta-fechada p-${i + 1}' onclick='abrirPergunta()'>
+
+            <div class=' pergunta-fechada p-${i + 1}' onclick='abrirPergunta(this)'>
                 <strong>Pergunta ${i + 1}</strong>
                 <ion-icon name="create-outline"></ion-icon>
             </div>
-        `
+        `;
+        
     }
-
+    
     container.innerHTML += `
         <button class="criar-quizz" onclick= "segundaSecao()">Prosseguir para criar níveis</button>
     `;
@@ -127,26 +130,42 @@ function validacao() {
     let qtdPerguntas = document.querySelector(".qtd-perguntas").value;
     let qtdNiveis = document.querySelector(".qtd-niveis").value;
 
-    if(tituloQuizz !== null, imagemQuizz !== null, qtdPerguntas !== null, qtdNiveis !== null) {
+    if (tituloQuizz !== null, imagemQuizz !== null, qtdPerguntas !== null, qtdNiveis !== null) {
         questions.length = qtdPerguntas;
         levels.length = qtdNiveis;
 
-        meuQuizz = {title: tituloQuizz, image: imagemQuizz};
+        meuQuizz = {
+            title: tituloQuizz,
+            image: imagemQuizz
+        };
     }
 }
 
-function abrirPergunta() {
+function abrirPergunta(clicado) {
     alert("falta fazer")
-    // const perguntaAberta = document.querySelector(pergunta);
-    // alert(pergunta);
-    // perguntaAberta.innerhtml = `    
-    //     <form>
-    //         <input class="titulo-quizz" placeholder="Título do seu quizz"></input>
-    //         <input class="imagem-quizz" placeholder="URL da imagem do seu quizz"></input>
-    //         <input class="qtd-perguntas" placeholder="Quantidade de perguntas do Quizz"></input>
-    //         <input class="qtd-niveis" placeholder="Quantidade de níveis do Quizz"></input>
-    //     </form>
-// `
+    const perguntaAberta = clicado;
+    perguntaAberta.classList.add('dentro')
+    console.log(perguntaAberta);
+    perguntaAberta.innerHTML = `   
+         <h2 class="titulo-secao"> <strong> Pergunta </strong> </h2>      
+         <form>
+            <input class="textoPergunta" placeholder="Texto da pergunta"></input>
+            <input class="corFundoPergunta" placeholder="Cor de fundo da pergunta"></input>
+        </form>
+         <h2 class="titulo-secao"> <strong> Resposta Correta </strong> </h2>
+        <form> 
+           <input class="RespostaCorreta" placeholder="Resposta Correta"></input>
+           <input class="ImagemOpcao" placeholder="URL da imagem"></input>
+        </form>
+         <h2 class="titulo-secao"> <strong> Respostas incorretas </strong> </h2>
+         <form>
+           <input class="RespostaIncorreta" placeholder="Resposta Incorreta 1"></input>
+           <input class="ImagemOpcao" placeholder="URL da imagem 1"></input>
+
+          <input class="RespostaIncorreta" placeholder="Resposta Incorreta 2"></input>
+          <input class="ImagemOpcao" placeholder="URL da imagem 2"></input>
+
+          <input class="RespostaIncorreta" placeholder="Resposta Incorreta 3"></input>
+          <input class="ImagemOpcao" placeholder="URL da imagem 3"></input>
+        </form>`;
 }
-
-
