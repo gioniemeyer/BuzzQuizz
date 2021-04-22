@@ -70,43 +70,11 @@ function teste(resposta) {
             }  
 }
 
-// function abrirQuizz(resposta) {
-//     console.log(resposta.data)
-
-//     containerMaior.innerHTML = `
-//     <div class="perguntas">
-//         <div class="containerPerguntas">
-//             <div class="cabecalho">
-//                 <p>${resposta.data.title}</p>
-//             </div>`
-//             const perguntasQuizz = resposta.data.questions;
-//             for(let i = 0; i < perguntasQuizz.length; i++) {
-//                 containerMaior.innerHTML +=
-//                     `<div class="caixaPergunta">
-//                         <div class="pergunta">${perguntasQuizz[i].title}</div>
-//                         <ul class="opcoes">`
-//                         const respostasPergunta = perguntasQuizz[i].answers;
-//                         for(let index = 0; index < respostasPergunta.length; index++) { 
-//                             containerMaior.innerHTML += `
-//                             <li class="${respostasPergunta[index].isCorrectAnswer} opcao" onclick="marcarOpcao(${respostasPergunta[index].isCorrectAnswer})">
-//                                 <img src="${respostasPergunta[index].image}" alt=""/>
-//                                 <p>${respostasPergunta[index].text}</p>
-//                             </li>`
-//                         }
-//             }
-//             contaicontainerMaior.innerHTML += `
-//                         </ul>
-//                     </div>
-//                 </div>
-//             </div>`
-// }
-
 function marcarOpcao(isTrue) {
     if(isTrue) {
         alert("certo!");
     }
 }
-
 
 function criarQuizz() {
 
@@ -201,3 +169,46 @@ function abrirPergunta(clicado) {
           <input class="ImagemOpcao" placeholder="URL da imagem 3"></input>
         </form>`;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function abrirQuizz(resposta) {
+//     console.log(resposta.data)
+
+//     containerMaior.innerHTML = `
+//     <div class="perguntas">
+//         <div class="containerPerguntas">
+//             <div class="cabecalho">
+//                 <p>${resposta.data.title}</p>
+//             </div>`
+//             const perguntasQuizz = resposta.data.questions;
+//             for(let i = 0; i < perguntasQuizz.length; i++) {
+//                 containerMaior.innerHTML +=
+//                     `<div class="caixaPergunta">
+//                         <div class="pergunta">${perguntasQuizz[i].title}</div>
+//                         <ul class="opcoes">`
+//                         const respostasPergunta = perguntasQuizz[i].answers;
+//                         for(let index = 0; index < respostasPergunta.length; index++) { 
+//                             containerMaior.innerHTML += `
+//                             <li class="${respostasPergunta[index].isCorrectAnswer} opcao" onclick="marcarOpcao(${respostasPergunta[index].isCorrectAnswer})">
+//                                 <img src="${respostasPergunta[index].image}" alt=""/>
+//                                 <p>${respostasPergunta[index].text}</p>
+//                             </li>`
+//                         }
+//             }
+//             contaicontainerMaior.innerHTML += `
+//                         </ul>
+//                     </div>
+//                 </div>
+//             </div>`
+// }
