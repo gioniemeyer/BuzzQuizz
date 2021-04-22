@@ -4,7 +4,7 @@ let meuQuizz = {};
 const questions = [];
 const levels = [];
 const perguntas = document.querySelector(".perguntas");
-
+let numero;
 pegandoQuizzes();
 
 function pegandoQuizzes() {
@@ -39,34 +39,51 @@ function abrirQuizz(resposta) {
 
     container.innerHTML = "";
     perguntas.innerHTML = "";
-    perguntas.innerHTML += `
-        <div class="containerPerguntas">
+    container.innerHTML += `
+        <div class="perguntas">
             <div class="cabecalho">
                 <p>${resposta.data.title}</p>
             </div>
-            <div class="caixaPergunta">`
+            `
 
+            // <div class="caixaPergunta">
+            //<div class="pergunta">Em qual animal Olho-Tonto Moody transfigurou Malfoy?</div>
+           // <ul class="opcoes">
+            //    <li class="opcao">
+            //        <img src="midias/image 3.png" alt="" />
+           //         <p>Gatineo</p>
+            //    </li>
+        
     const perguntasQuizz = resposta.data.questions;
+    const caixa = document.querySelector(".caixaPergunta");
 
     for (let i = 0; i < perguntasQuizz.length; i++) {
         console.log(perguntasQuizz[i]);
         container.innerHTML += `
+                <div class="caixaPergunta">
                 <div class="pergunta">${perguntasQuizz[i].title}</div>
                 <ul class="opcoes">`
+                
         const respostas = perguntasQuizz[i].answers;
         for (let i = 0; i < respostas.length; i++) {
             container.innerHTML += `
+                    
                     <li class="opcao">
-                        <img src="${respostas[i].image}" alt=""/>
+                    <img src="${respostas[i].image}" alt=""/>
                         <p>${respostas[i].text}</p>
                     </li>
             `;
         }
-        perguntas.innerHTML += `
-                </ul>
-            </div>
-        </div>`
-    }
+        // raciocínio: Não ta renderizando certo pq nao ta adicianando o 
+        //fechamento da div e ul no fim, como fazer isso? Pensei em criar um 
+        //if que identifica se é o último elemento da ul e adiciona o fechamento...
+     
+    } 
+    caixa.innerHTML += `
+       </ul>
+       </div>
+`;
+
 }
 
 
@@ -104,13 +121,14 @@ function segundaSecao() {
     for (let i = 0; i < questions.length; i++) { //depois mudar esse 3 para variar com o qtd-perguntas
         container.innerHTML += `
 
-            <div class='pergunta-fechada p-${i + 1}' onclick='abrirPergunta()'>
+            <div class=' pergunta-fechada p-${i + 1}' onclick='abrirPergunta(this)'>
                 <strong>Pergunta ${i + 1}</strong>
                 <ion-icon name="create-outline"></ion-icon>
             </div>
-        `
+        `;
+        
     }
-
+    
     container.innerHTML += `
         <button class="criar-quizz" onclick= "segundaSecao()">Prosseguir para criar níveis</button>
     `;
@@ -134,38 +152,37 @@ function validacao() {
     }
 }
 
-function abrirPergunta() {
+function abrirPergunta(clicado) {
     alert("falta fazer")
-    const perguntaAberta = document.querySelector(pergunta);
-    alert(pergunta);
-    perguntaAberta.innerhtml = `   
-        <form>
-            <h2 class="titulo-secao"> <strong> Pergunta ${i + 1} </strong> </h2> 
+    const perguntaAberta = clicado;
+    perguntaAberta.classList.add('dentro')
+    console.log(perguntaAberta);
+    perguntaAberta.innerHTML = `   
+         <h2 class="titulo-secao"> <strong> Pergunta </strong> </h2>      
+         <form>
             <input class="textoPergunta" placeholder="Texto da pergunta"></input>
             <input class="corFundoPergunta" placeholder="Cor de fundo da pergunta"></input>
-       </form>
-       <form>
-           <h2 class="titulo-secao"> <strong> Resposta Correta </strong> </h2> 
+        </form>
+         <h2 class="titulo-secao"> <strong> Resposta Correta </strong> </h2>
+        <form> 
            <input class="RespostaCorreta" placeholder="Resposta Correta"></input>
            <input class="ImagemOpcao" placeholder="URL da imagem"></input>
-       </form>
-       <form>
-          <h2 class="titulo-secao"> <strong> Respostas incorretas </strong> </h2> 
-          <input class="RespostaIncorreta" placeholder="Resposta Incorreta 1"></input>
-          <input class="ImagemOpcao" placeholder="URL da imagem 1"></input>
+        </form>
+         <h2 class="titulo-secao"> <strong> Respostas incorretas </strong> </h2>
+         <form>
+           <input class="RespostaIncorreta" placeholder="Resposta Incorreta 1"></input>
+           <input class="ImagemOpcao" placeholder="URL da imagem 1"></input>
 
           <input class="RespostaIncorreta" placeholder="Resposta Incorreta 2"></input>
           <input class="ImagemOpcao" placeholder="URL da imagem 2"></input>
 
           <input class="RespostaIncorreta" placeholder="Resposta Incorreta 3"></input>
           <input class="ImagemOpcao" placeholder="URL da imagem 3"></input>
-       </form>
+        </form>`;
 
-}`
-    // "<h2 class="titulo-secao">"- mudar o alinhamento p não ficar centralizado (ajustes finais)
-
-
-
+}
+    // "<h2 class="titulo-secao">"- mudar o alinhamento p não ficar centralizado (ajustes finais) e colocar o numero
+    //identificador de cada pergunta;
 
 
 

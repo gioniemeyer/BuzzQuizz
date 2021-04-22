@@ -25,7 +25,6 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 100px;
 }
 
 .meus-quizzes {
@@ -137,13 +136,13 @@ input:placeholder-shown {
     width: 360px;
     height: 54px;
     color: #fff;
+    margin-bottom: 100px;
 
 }
 
 .perguntas {
+    width: 100%;
     background-color: #E5E5E5;
-}
-.containerPerguntas {
     margin-top: 70px;
     display: flex;
     align-items: center;
@@ -282,6 +281,7 @@ input:placeholder-shown {
     justify-content: center;
     margin-bottom: 135px;
     margin-top: 50px;
+    background-color:#E5E5E5;
 }
 
 
@@ -301,4 +301,10 @@ input:placeholder-shown {
 .cinza {
     color: #818181;
     background:transparent;
+}
+
+
+.dentro {
+    display: flex;
+    flex-direction: column;
 }
