@@ -153,6 +153,7 @@ input:placeholder-shown {
 .cabecalho {
     width: 100%;
     height: 230px;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -317,4 +318,8 @@ input:placeholder-shown {
 .dentro {
     display: flex;
     flex-direction: column;
+}
+
+.escondido {
+    display: none;
 }

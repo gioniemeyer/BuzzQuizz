@@ -35,43 +35,67 @@ function renderizandoQuizzes(resposta) {
 function escolherQuizz(quizzClicado) {
     const promessa = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes/${quizzClicado}`);
 
-    promessa.then(abrirQuizz);
+    promessa.then(teste);
 }
 
-function abrirQuizz(resposta) {
-    console.log(resposta.data)
     containerMaior.innerHTML = `
-    <div class="perguntas">
-        <div class="containerPerguntas">
+        <div class="perguntas">
             <div class="cabecalho">
                 <p>${resposta.data.title}</p>
-            </div>`
-            const perguntasQuizz = resposta.data.questions;
+            </div>
+            <div class="caixaPergunta"></div>
+        </div>`;
+
+            let perguntasQuizz = resposta.data.questions;
+            for(let i = 0; i < resposta.data.length; i++) {
+                caixaPergunta.innerHTML += `                
+                <div class="pergunta">${perguntasQuizz[i].title}
+                    <ul class="opcoes"></ul>
+                </div>`;
+
+                let opcoes = document.querySelector('.opcoes');
+                let respostasPergunta = perguntasQuizz[i].answers;
+
+                for(let index = 0; index < respostasPergunta.length; index++) {
+                    opcoes.innerHTML += `
+                    <li class="${respostasPergunta[index].isCorrectAnswer} opcao" onclick="marcarOpcao(${respostasPergunta[index].isCorrectAnswer})">
+                        <img src="${respostasPergunta[index].image}" alt=""/>
+                        <p>${respostasPergunta[index].text}</p>
+                    </li>`;
+                }
+            }  
 
 
-            for(let i = 0; i < perguntasQuizz.length; i++) {
-                containerMaior.innerHTML +=
-                    `<div class="caixaPergunta">
-                        <div class="pergunta">${perguntasQuizz[i].title}</div>
-                        <ul class="opcoes">`
-                        const respostasPergunta = perguntasQuizz[i].answers;
+// function abrirQuizz(resposta) {
+//     console.log(resposta.data)
 
-
-                        for(let index = 0; index < respostasPergunta.length; index++) { 
-                            containerMaior.innerHTML += `
-                            <li class="${respostasPergunta[index].isCorrectAnswer} opcao" onclick="marcarOpcao(${respostasPergunta[index].isCorrectAnswer})">
-                                <img src="${respostasPergunta[index].image}" alt=""/>
-                                <p>${respostasPergunta[index].text}</p>
-                            </li>`
-                        }
-            }
-
-            contaicontainerMaior.innerHTML += `
-                        </ul>
-                    </div>
-                </div>
-            </div>`
-}
+//     containerMaior.innerHTML = `
+//     <div class="perguntas">
+//         <div class="containerPerguntas">
+//             <div class="cabecalho">
+//                 <p>${resposta.data.title}</p>
+//             </div>`
+//             const perguntasQuizz = resposta.data.questions;
+//             for(let i = 0; i < perguntasQuizz.length; i++) {
+//                 containerMaior.innerHTML +=
+//                     `<div class="caixaPergunta">
+//                         <div class="pergunta">${perguntasQuizz[i].title}</div>
+//                         <ul class="opcoes">`
+//                         const respostasPergunta = perguntasQuizz[i].answers;
+//                         for(let index = 0; index < respostasPergunta.length; index++) { 
+//                             containerMaior.innerHTML += `
+//                             <li class="${respostasPergunta[index].isCorrectAnswer} opcao" onclick="marcarOpcao(${respostasPergunta[index].isCorrectAnswer})">
+//                                 <img src="${respostasPergunta[index].image}" alt=""/>
+//                                 <p>${respostasPergunta[index].text}</p>
+//                             </li>`
+//                         }
+//             }
+//             contaicontainerMaior.innerHTML += `
+//                         </ul>
+//                     </div>
+//                 </div>
+//             </div>`
+// }
 
 function marcarOpcao(isTrue) {
     if(isTrue) {
@@ -111,9 +135,8 @@ function segundaSecao() {
     container.innerHTML = `
     <h2 class="titulo-secao"> <strong> Crie suas perguntas </strong> </h2>`
 
-    for (let i = 0; i < questions.length; i++) { //depois mudar esse 3 para variar com o qtd-perguntas
+    for (let i = 0; i < questions.length; i++) {
         container.innerHTML += `
-
             <div class=' pergunta-fechada p-${i + 1}' onclick='abrirPergunta(this)'>
                 <strong>Pergunta ${i + 1}</strong>
                 <ion-icon name="create-outline"></ion-icon>
