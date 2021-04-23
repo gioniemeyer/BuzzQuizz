@@ -152,6 +152,22 @@ function abrirPergunta(clicado) {
         </form>`;
 }
 
+function abrirNivel(clicado) {
+    const nivelAberto = clicado;
+    nivelAberto.setAttribute('onclick',"");
+    nivelAberto.classList.add('dentro')
+    console.log(nivelAberto);
+    nivelAberto.innerHTML = `
+         <h2 class="titulo-secao"> <strong> Nível </strong> </h2>
+         <form>
+            <input class="textoNivel" placeholder="Título do nível"></input>
+            <input class="porcentagemAcertoMinimo" placeholder="% de acerto mínimo"></input>
+            <input class="imagemNivel" placeholder="URL da imagem do nível"></input>
+            <input class="descricao" placeholder="Descrição do nível"></input>
+        </form>
+         `;
+}
+
 function terceiraSecao() {
 
     validacaoPerguntas();
@@ -231,43 +247,32 @@ function validacaoPerguntas() {
     console.log(meuQuizz);
 }
 
-// function validacaoTerceiraSecao() {
-//     let RespostaCorreta = document.querySelector(".RespostaCorreta").value;
-//     let corFundoPergunta = document.querySelector(".corFundoPergunta").value;
-//     let ImagemOpcao = document.querySelector(".ImagemOpcao").value;
-//     let RespostaIncorreta1 = document.querySelector('.resp-1').value;
-//     let RespostaIncorreta2 = document.querySelector('.resp-2').value;
-//     let RespostaIncorreta3 = document.querySelector('.resp-3').value;
+function validacaoFinal() {
+    for(let i = 0; i < qtdNiveis; i++) {
+        let level = {};
+        let nivelTitulo = document.querySelector('.n-' + (i + 1) + ' .textoNivel').value;
+        let nivelPorcentagem = document.querySelector('.n-' + (i + 1) + ' .porcentagemAcertoMinimo').value;
+        let nivelImagem = document.querySelector('.n-' + (i + 1) + ' .imagemNivel').value;
+        let nivelDescricao = document.querySelector('.n-' + (i + 1) + ' .descricao').value;
 
+        level.title = nivelTitulo;
+        level.image = nivelImagem;
+        level.text = nivelDescricao;
+        level.minValue = nivelPorcentagem;
 
-//     if (RespostaCorreta !== null, corFundoPergunta !== null, ImagemOpcao !== null, RespostaIncorreta1 !== null, RespostaIncorreta2 !== null, RespostaIncorreta3 !== null) {
-//         // questions.length = qtdPerguntas;
-//         levels.length = qtdNiveis;
+        console.log(level);
 
-//         meuQuizz = {
-//             title: tituloQuizz,
-//             image: imagemQuizz
-//         };
-//     }
-// }
+        levels[i] = level;
+    }
 
-function abrirNivel(clicado) {
-    const nivelAberto = clicado;
-    nivelAberto.setAttribute('onclick',"");
-    nivelAberto.classList.add('dentro')
-    console.log(nivelAberto);
-    nivelAberto.innerHTML = `
-         <h2 class="titulo-secao"> <strong> Nível </strong> </h2>
-         <form>
-            <input class="textoNivel" placeholder="Título do nível"></input>
-            <input class="porcentagemAcertoMinimo" placeholder="% de acerto mínimo"></input>
-            <input class="imagemNivel" placeholder="URL da imagem do nível"></input>
-            <input class="descricao" placeholder="Descrição do nível"></input>
-        </form>
-         `;
+    meuQuizz.levels = questions;
+    console.log(levels);
+    console.log(meuQuizz);
 }
 
 function finaliza() {
+
+    validacaoFinal();
 
     container.innerHTML = "";
     container.innerHTML = `
