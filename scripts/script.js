@@ -6,8 +6,11 @@ const levels = [];
 const perguntas  = document.querySelector(".perguntas");
 const containerMaior = document.querySelector(".container-maior");
 let numero;
+let qtdPerguntas;
 let qtdNiveis;
-
+let question = {}
+let listaRespostas = [];
+let listaResposta = {};
 
 pegandoQuizzes();
 
@@ -94,7 +97,7 @@ function renderizarPrimeiraSecao() {
             <input class="qtd-niveis" placeholder="Quantidade de níveis do Quizz"></input>
         </form>
 
-        <button class="criar-quizz" onclick= "segundaSecao()">Presseguir para criar perguntas</button>
+        <button class="criar-quizz" onclick= "segundaSecao()">Prosseguir para criar perguntas</button>
     `;
 }
 
@@ -122,11 +125,38 @@ function segundaSecao() {
     `;
 }
 
+function terceiraSecao() {
+
+    validacaoPerguntas();
+
+}
+
+function validacaoPerguntas() {
+    for(let i = 0; i < qtdPerguntas; i++) {
+        let perguntaTitulo = document.querySelector('.p-' + (i + 1) + ' .textoPergunta').value;
+        let perguntaCor = document.querySelector('.p-' + (i + 1) + ' .corFundoPergunta').value;
+
+        for(index = 0; index < 4; index++) {
+            let respostaAdicionar = document.querySelector('.p-' + (i + 1) + ' .r-' + (index + 1)).value;
+            if(respostaAdicionar) {
+                listaResposta.text = respostaAdicionar;
+                listaRespostas[index] = listaResposta;
+            }
+        }
+   
+        question.title = perguntaTitulo;
+        question.color = perguntaCor;
+        question.answers = listaRespostas;
+
+        questions[i] = question;
+    }
+    console.log(questions);
+}
 
 function validacao() {
     let tituloQuizz = document.querySelector(".titulo-quizz").value;
     let imagemQuizz = document.querySelector(".imagem-quizz").value;
-    let qtdPerguntas = document.querySelector(".qtd-perguntas").value;
+    qtdPerguntas = document.querySelector(".qtd-perguntas").value;
     qtdNiveis = document.querySelector(".qtd-niveis").value;
 
     if (tituloQuizz !== null, imagemQuizz !== null, qtdPerguntas !== null, qtdNiveis !== null) {
@@ -142,8 +172,8 @@ function validacao() {
 
 function abrirPergunta(clicado) {
     const perguntaAberta = clicado;
-    perguntaAberta.classList.add('dentro')
-    console.log(perguntaAberta);
+    perguntaAberta.classList.add('dentro');
+    perguntaAberta.setAttribute('onclick',"");
     perguntaAberta.innerHTML = `   
          <h2 class="titulo-secao"> <strong> Pergunta </strong> </h2>      
          <form>
@@ -152,19 +182,21 @@ function abrirPergunta(clicado) {
         </form>
          <h2 class="titulo-secao"> <strong> Resposta Correta </strong> </h2>
         <form> 
-           <input class="RespostaCorreta" placeholder="Resposta Correta"></input>
+           <input class="RespostaCorreta r-1" placeholder="Resposta Correta"></input>
            <input class="ImagemOpcao" placeholder="URL da imagem"></input>
         </form>
          <h2 class="titulo-secao"> <strong> Respostas incorretas </strong> </h2>
          <form>
-           <input class="RespostaIncorreta1" placeholder="Resposta Incorreta 1"></input>
-           <input class="ImagemOpcao1" placeholder="URL da imagem 1"></input>
 
-          <input class="RespostaIncorreta2" placeholder="Resposta Incorreta 2"></input>
-          <input class="ImagemOpcao2" placeholder="URL da imagem 2"></input>
+           <input class="RespostaIncorreta r-2" placeholder="Resposta Incorreta 1"></input>
+           <input class="ImagemOpcao" placeholder="URL da imagem 1"></input>
 
-          <input class="RespostaIncorreta3" placeholder="Resposta Incorreta 3"></input>
-          <input class="ImagemOpcao3" placeholder="URL da imagem 3"></input>
+          <input class="RespostaIncorreta r-3" placeholder="Resposta Incorreta 2"></input>
+          <input class="ImagemOpcao" placeholder="URL da imagem 2"></input>
+
+          <input class="RespostaIncorreta r-4" placeholder="Resposta Incorreta 3"></input>
+          <input class="ImagemOpcao" placeholder="URL da imagem 3"></input>
+
         </form>`;
 }
 
