@@ -48,6 +48,7 @@ function teste(resposta) {
     containerMaior.innerHTML = `
         <div class="perguntas">
             <div class="cabecalho">
+                <img src="${resposta.data.image}" /> 
                 <p>${resposta.data.title}</p>
             </div>
             <div class="caixaPergunta"></div>
@@ -112,7 +113,7 @@ function segundaSecao() {
 
     for (let i = 0; i < questions.length; i++) {
         container.innerHTML += `
-            <div class=' pergunta-fechada p-${i + 1}' onclick='abrirPergunta(this)'>
+            <div class=' fechado p-${i + 1}' onclick='abrirPergunta(this)'>
                 <strong>Pergunta ${i + 1}</strong>
                 <ion-icon name="create-outline"></ion-icon>
             </div>
@@ -171,7 +172,6 @@ function validacao() {
 }
 
 function abrirPergunta(clicado) {
-
     const perguntaAberta = clicado;
     perguntaAberta.classList.add('dentro');
     perguntaAberta.setAttribute('onclick',"");
@@ -188,6 +188,7 @@ function abrirPergunta(clicado) {
         </form>
          <h2 class="titulo-secao"> <strong> Respostas incorretas </strong> </h2>
          <form>
+
            <input class="RespostaIncorreta r-2" placeholder="Resposta Incorreta 1"></input>
            <input class="ImagemOpcao" placeholder="URL da imagem 1"></input>
 
@@ -196,16 +197,71 @@ function abrirPergunta(clicado) {
 
           <input class="RespostaIncorreta r-4" placeholder="Resposta Incorreta 3"></input>
           <input class="ImagemOpcao" placeholder="URL da imagem 3"></input>
+
         </form>`;
 }
 
 
+function terceiraSecao() {
+
+    validacaoTerceiraSecao();
+
+    container.innerHTML = "";
+
+    container.innerHTML = `
+    <h2 class="titulo-secao"> <strong>Agora, decida os níveis!</strong> </h2>`
+
+    for (let i = 0; i < levels.length; i++) {
+        container.innerHTML += `
+            <div class=' fechado n-${i + 1}' onclick='abrirNivel(this)'>
+                <strong>Nível ${i + 1}</strong>
+                <ion-icon name="create-outline"></ion-icon>
+            </div>
+        `;
+        
+    }
+    
+    container.innerHTML += `
+        <button class="criar-quizz" onclick= "finaliza()">Finalizar Quizz</button>
+    `;
+}
 
 
 
+function validacaoTerceiraSecao() {
+    let RespostaCorreta = document.querySelector(".RespostaCorreta").value;
+    let corFundoPergunta = document.querySelector(".corFundoPergunta").value;
+    let ImagemOpcao = document.querySelector(".ImagemOpcao").value;
+    let RespostaIncorreta1 = document.querySelector(".RespostaIncorreta1").value;
+    let RespostaIncorreta2 = document.querySelector(".RespostaIncorreta2").value;
+    let RespostaIncorreta3 = document.querySelector(".RespostaIncorreta2").value;
 
 
+    if (RespostaCorreta !== null, corFundoPergunta !== null, ImagemOpcao !== null, RespostaIncorreta1 !== null, RespostaIncorreta2 !== null, RespostaIncorreta3 !== null) {
+        // questions.length = qtdPerguntas;
+        levels.length = qtdNiveis;
 
+        // meuQuizz = {
+        //     title: tituloQuizz,
+        //     image: imagemQuizz
+        // };
+    }
+}
+
+function abrirNivel(clicado) {
+    const nivelAberto = clicado;
+    nivelAberto.classList.add('dentro')
+    console.log(nivelAberto);
+    nivelAberto.innerHTML = `   
+         <h2 class="titulo-secao"> <strong> Nível </strong> </h2>      
+         <form>
+            <input class="textoNivel" placeholder="Título do nível"></input>
+            <input class="porcentagemAcertoMinimo" placeholder="% de acerto mínimo"></input>
+            <input class="imagemNivel" placeholder="URL da imagem do nível"></input>
+            <input class="descricao" placeholder="Descrição do nível"></input>
+        </form>
+         `;
+}
 
 
 

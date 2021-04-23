@@ -103,15 +103,15 @@ button {
 form {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 600px;
     align-items: center;
     background-color: #fff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
     margin-top: 30px;
+    padding: 0 20px;
 }
 
 input {
-    width: 80%;
+    width: 550px;
     height: 46px;
     margin-bottom: 10px;
     padding: 0 20px;
@@ -232,9 +232,9 @@ input:placeholder-shown {
     margin-right: 0px;
 }
 
-.pergunta-fechada {
+.fechado {
     display: flex;
-    width: 70%;
+    width: 600px;
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
@@ -318,6 +318,9 @@ input:placeholder-shown {
 .dentro {
     display: flex;
     flex-direction: column;
+}
+.descricao{
+    height: 177px;
 }
 
 .escondido {
