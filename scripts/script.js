@@ -39,7 +39,7 @@ function escolherQuizz(quizzClicado) {
 }
 
 function renderizarQuizz(resposta) {
-    const caixaPergunta = document.querySelector('.caixaPergunta');
+    ;
     containerMaior.innerHTML = `
         <div class="perguntas">
             <div class="cabecalho">
@@ -48,22 +48,21 @@ function renderizarQuizz(resposta) {
             </div>
             <div class="caixaPergunta"></div>
         </div>`;
-
+  const caixaPergunta = document.querySelector('.caixaPergunta')
             let perguntasQuizz = resposta.data.questions;
             for(let i = 0; i < perguntasQuizz.length; i++) {
                 caixaPergunta.innerHTML += `
-                <div class="pergunta p-${i}">${perguntasQuizz[i].title}
+                <div class="pergunta">${perguntasQuizz[i].title}</div>
                     <ul class="opcoes"></ul>
-                </div>`;
+                `;
 
-                let opcoes = caixaPergunta.querySelector(`.p-${i} ul`);
+                let opcoes = caixaPergunta.querySelector(` ul`);
                 let respostasPergunta = perguntasQuizz[i].answers;
 
                 console.log(opcoes);
                 console.log(respostasPergunta);
 
                 for(let index = 0; index < respostasPergunta.length; index++) {
-                    console.log('tá rodando?');
                     opcoes.innerHTML += `
                     <li class="${respostasPergunta[index].isCorrectAnswer} opcao" onclick="marcarOpcao(${respostasPergunta[index].isCorrectAnswer})">
                         <img src="${respostasPergunta[index].image}" alt=""/>
