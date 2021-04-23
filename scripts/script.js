@@ -2,7 +2,6 @@ const ul = document.querySelector('ul');
 const container = document.querySelector(".container");
 let meuQuizz = {};
 const questions = [];
-const levels = [];
 const perguntas  = document.querySelector(".perguntas");
 const containerMaior = document.querySelector(".container-maior");
 let numero;
@@ -208,7 +207,7 @@ function validacao() {
         segundaSecao();
 
     } else {
-        alert("Alguma infornmação não foi preenchida corretamente, tente novamente!")
+        alert("Alguma infornmação não foi preenchida corretamente, tente novamente!");
         return
     }
 }
@@ -241,7 +240,7 @@ function validacaoPerguntas() {
                     listaRespostas[index] = listaResposta;
 
                 } else if(index < 2) {
-                    alert();
+                    alert("Alguma infornmação não foi preenchida corretamente, tente novamente!");
                     return
                 } 
             }
@@ -265,27 +264,36 @@ function validacaoPerguntas() {
 
 function validacaoFinal() {
     for(let i = 0; i < qtdNiveis; i++) {
+
+        const levels = [];
         let level = {};
         let nivelTitulo = document.querySelector('.n-' + (i + 1) + ' .textoNivel').value;
         let nivelPorcentagem = document.querySelector('.n-' + (i + 1) + ' .porcentagemAcertoMinimo').value;
         let nivelImagem = document.querySelector('.n-' + (i + 1) + ' .imagemNivel').value;
         let nivelDescricao = document.querySelector('.n-' + (i + 1) + ' .descricao').value;
 
-        level.title = nivelTitulo;
-        level.image = nivelImagem;
-        level.text = nivelDescricao;
-        level.minValue = nivelPorcentagem;
+        nivelPorcentagem = parseInt(nivelPorcentagem);
+    
+        if(nivelTitulo.length > 9 && -1 < nivelPorcentagem < 101 && nivelDescricao.length > 29) {
+            level.title = nivelTitulo;
+            level.image = nivelImagem;
+            level.text = nivelDescricao;
+            level.minValue = nivelPorcentagem;
 
-        console.log(level);
+            console.log(level);
 
-        levels[i] = level;
+            levels[i] = level;
+        } else {
+            alert("Alguma infornmação não foi preenchida corretamente, tente novamente!");
+            return
+        }
     }
 
-    meuQuizz.levels = questions;
+    meuQuizz.levels = levels;
     console.log(levels);
     console.log(meuQuizz);
 
-    finaliza()
+    finaliza();
 }
 
 function finaliza() {
