@@ -202,8 +202,6 @@ function validacaoPerguntas() {
             let listaResposta = {};
             let respostaAdicionar = document.querySelector('.p-' + (i + 1) + ' .resp-' + (index + 1)).value;
             let respostaImagem = document.querySelector('.p-' + (i + 1) + ' .img-' + (index + 1)).value;
-            console.log(respostaAdicionar);
-            console.log(respostaImagem);
 
             if(respostaAdicionar) {
                 listaResposta.text = respostaAdicionar;
@@ -228,9 +226,9 @@ function validacaoPerguntas() {
         questions[i] = question;
     }
 
-    // meuQuizz.questions = questions;
+    meuQuizz.questions = questions;
     console.log(questions);
-    // console.log(meuQuizz);
+    console.log(meuQuizz);
 }
 
 // function validacaoTerceiraSecao() {
