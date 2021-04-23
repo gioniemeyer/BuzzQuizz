@@ -204,7 +204,7 @@ function validacaoPerguntas() {
             let respostaImagem = document.querySelector('.p-' + (i + 1) + ' .img-' + (index + 1)).value;
 
             if(respostaAdicionar) {
-                listaResposta.text = respostaAdicionar;
+                listaResposta.text = respostaAdicionar;   
                 listaResposta.image = respostaImagem;
 
                 if(index === 0) {
@@ -253,6 +253,7 @@ function validacaoPerguntas() {
 
 function abrirNivel(clicado) {
     const nivelAberto = clicado;
+    nivelAberto.setAttribute('onclick',"");
     nivelAberto.classList.add('dentro')
     console.log(nivelAberto);
     nivelAberto.innerHTML = `
