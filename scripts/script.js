@@ -79,7 +79,6 @@ function marcarOpcao(isTrue) {
 function criarQuizz() {
 
     renderizarPrimeiraSecao()
-    validacao();
 
 }
 
@@ -94,13 +93,11 @@ function renderizarPrimeiraSecao() {
             <input class="qtd-niveis" placeholder="Quantidade de níveis do Quizz"></input>
         </form>
 
-        <button class="criar-quizz" onclick= "segundaSecao()">Prosseguir para criar perguntas</button>
+        <button class="criar-quizz" onclick= "validacao()">Prosseguir para criar perguntas</button>
     `;
 }
 
 function segundaSecao() {
-
-    validacao();
 
     container.innerHTML = "";
 
@@ -118,7 +115,28 @@ function segundaSecao() {
     }
 
     container.innerHTML += `
-        <button class="criar-quizz" onclick= "terceiraSecao()">Prosseguir para criar níveis</button>
+        <button class="criar-quizz" onclick= "validacaoPerguntas()">Prosseguir para criar níveis</button>
+    `;
+}
+
+function terceiraSecao() {
+
+    container.innerHTML = "";
+
+    container.innerHTML = `
+    <h2 class="titulo-secao"> <strong>Agora, decida os níveis!</strong> </h2>`
+
+    for (let i = 0; i < levels.length; i++) {
+        container.innerHTML += `
+            <div class=' fechado n-${i + 1}' onclick='abrirNivel(this)'>
+                <strong>Nível ${i + 1}</strong>
+                <ion-icon name="create-outline"></ion-icon>
+            </div>
+        `;
+    }
+
+    container.innerHTML += `
+        <button class="criar-quizz" onclick= "validacaoFinal()">Finalizar Quizz</button>
     `;
 }
 
@@ -168,29 +186,6 @@ function abrirNivel(clicado) {
          `;
 }
 
-function terceiraSecao() {
-
-    validacaoPerguntas();
-
-    container.innerHTML = "";
-
-    container.innerHTML = `
-    <h2 class="titulo-secao"> <strong>Agora, decida os níveis!</strong> </h2>`
-
-    for (let i = 0; i < levels.length; i++) {
-        container.innerHTML += `
-            <div class=' fechado n-${i + 1}' onclick='abrirNivel(this)'>
-                <strong>Nível ${i + 1}</strong>
-                <ion-icon name="create-outline"></ion-icon>
-            </div>
-        `;
-
-    }
-
-    container.innerHTML += `
-        <button class="criar-quizz" onclick= "finaliza()">Finalizar Quizz</button>
-    `;
-}
 
 function validacao() {
     let tituloQuizz = document.querySelector(".titulo-quizz").value;
@@ -198,39 +193,61 @@ function validacao() {
     qtdPerguntas = document.querySelector(".qtd-perguntas").value;
     qtdNiveis = document.querySelector(".qtd-niveis").value;
 
-    if (tituloQuizz !== null, imagemQuizz !== null, qtdPerguntas !== null, qtdNiveis !== null) {
+    qtdPerguntas = parseInt(qtdPerguntas);
+    qtdNiveis = parseInt(qtdNiveis);
+    let tamanhoTituloQuizz = tituloQuizz.length;
+
+    if (19 < tamanhoTituloQuizz < 66 && imagemQuizz && typeof(qtdPerguntas) === "number" && qtdPerguntas > 2 && typeof(qtdNiveis && qtdPerguntas > 1) ) {
+        
         questions.length = qtdPerguntas;
         levels.length = qtdNiveis;
 
         meuQuizz.title = tituloQuizz;
         meuQuizz.image = imagemQuizz;
+
+        segundaSecao();
+
+    } else {
+        alert("Alguma infornmação não foi preenchida corretamente, tente novamente!")
+        return
     }
 }
 
 function validacaoPerguntas() {
+
     for(let i = 0; i < qtdPerguntas; i++) {
         let question = {};
         let listaRespostas = [];
         let perguntaTitulo = document.querySelector('.p-' + (i + 1) + ' .textoPergunta').value;
         let perguntaCor = document.querySelector('.p-' + (i + 1) + ' .corFundoPergunta').value;
 
-        for(let index = 0; index < 4; index++) {
-            let listaResposta = {};
-            let respostaAdicionar = document.querySelector('.p-' + (i + 1) + ' .resp-' + (index + 1)).value;
-            let respostaImagem = document.querySelector('.p-' + (i + 1) + ' .img-' + (index + 1)).value;
+        if(perguntaTitulo.length > 19) {
 
-            if(respostaAdicionar) {
-                listaResposta.text = respostaAdicionar;   
-                listaResposta.image = respostaImagem;
+            for(let index = 0; index < 4; index++) {
+                let listaResposta = {};
+                let respostaAdicionar = document.querySelector('.p-' + (i + 1) + ' .resp-' + (index + 1)).value;
+                let respostaImagem = document.querySelector('.p-' + (i + 1) + ' .img-' + (index + 1)).value;
 
-                if(index === 0) {
-                    listaResposta.isCorrectAnswer = true;
-                } else {
-                    listaResposta.isCorrectAnswer = false;
-                }
+                if(respostaAdicionar && respostaImagem) {
+                    listaResposta.text = respostaAdicionar;   
+                    listaResposta.image = respostaImagem;
 
-                listaRespostas[index] = listaResposta;
+                    if(index === 0) {
+                        listaResposta.isCorrectAnswer = true;
+                    } else {
+                        listaResposta.isCorrectAnswer = false;
+                    }
+
+                    listaRespostas[index] = listaResposta;
+
+                } else if(index < 2) {
+                    alert();
+                    return
+                } 
             }
+        } else {
+            alert();
+            return
         }
 
         question.title = perguntaTitulo;
@@ -242,9 +259,8 @@ function validacaoPerguntas() {
         questions[i] = question;
     }
 
-    meuQuizz.questions = questions;
-    console.log(questions);
-    console.log(meuQuizz);
+        terceiraSecao()    
+
 }
 
 function validacaoFinal() {
@@ -268,11 +284,11 @@ function validacaoFinal() {
     meuQuizz.levels = questions;
     console.log(levels);
     console.log(meuQuizz);
+
+    finaliza()
 }
 
 function finaliza() {
-
-    validacaoFinal();
 
     container.innerHTML = "";
     container.innerHTML = `
