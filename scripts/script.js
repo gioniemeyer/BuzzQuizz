@@ -8,9 +8,6 @@ const containerMaior = document.querySelector(".container-maior");
 let numero;
 let qtdPerguntas;
 let qtdNiveis;
-let question = {}
-let listaRespostas = [];
-let listaResposta = {};
 
 pegandoQuizzes();
 
@@ -39,15 +36,15 @@ function renderizandoQuizzes(resposta) {
 function escolherQuizz(quizzClicado) {
     const promessa = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes/${quizzClicado}`);
 
-    promessa.then(teste);
+    promessa.then(renderizarQuizz);
 }
 
-function teste(resposta) {
+function renderizarQuizz(resposta) {
     const caixaPergunta = document.querySelector('.caixaPergunta');
     containerMaior.innerHTML = `
         <div class="perguntas">
             <div class="cabecalho">
-                <img src="${resposta.data.image}" /> 
+                <img src="${resposta.data.image}" />
                 <p>${resposta.data.title}</p>
             </div>
             <div class="caixaPergunta"></div>
@@ -55,7 +52,7 @@ function teste(resposta) {
 
             let perguntasQuizz = resposta.data.questions;
             for(let i = 0; i < resposta.data.length; i++) {
-                caixaPergunta.innerHTML += `                
+                caixaPergunta.innerHTML += `
                 <div class="pergunta">${perguntasQuizz[i].title}
                     <ul class="opcoes"></ul>
                 </div>`;
@@ -70,7 +67,7 @@ function teste(resposta) {
                         <p>${respostasPergunta[index].text}</p>
                     </li>`;
                 }
-            }  
+            }
 }
 
 function marcarOpcao(isTrue) {
@@ -117,92 +114,47 @@ function segundaSecao() {
                 <ion-icon name="create-outline"></ion-icon>
             </div>
         `;
-        
+
     }
-    
+
     container.innerHTML += `
         <button class="criar-quizz" onclick= "terceiraSecao()">Prosseguir para criar níveis</button>
     `;
-}
-
-function terceiraSecao() {
-
-   validacaoPerguntas();
-
-}
-
-function validacaoPerguntas() {
-    for(let i = 0; i < qtdPerguntas; i++) {
-        let perguntaTitulo = document.querySelector('.p-' + (i + 1) + ' .textoPergunta').value;
-        let perguntaCor = document.querySelector('.p-' + (i + 1) + ' .corFundoPergunta').value;
-
-        for(index = 0; index < 4; index++) {
-            let respostaAdicionar = document.querySelector('.p-' + (i + 1) + ' .r-' + (index + 1)).value;
-            if(respostaAdicionar) {
-                listaResposta.text = respostaAdicionar;
-                listaRespostas[index] = listaResposta;
-            }
-        }
-   
-        question.title = perguntaTitulo;
-        question.color = perguntaCor;
-        question.answers = listaRespostas;
-
-        questions[i] = question;
-    }
-    console.log(questions);
-}
-
-function validacao() {
-    let tituloQuizz = document.querySelector(".titulo-quizz").value;
-    let imagemQuizz = document.querySelector(".imagem-quizz").value;
-    qtdPerguntas = document.querySelector(".qtd-perguntas").value;
-    qtdNiveis = document.querySelector(".qtd-niveis").value;
-
-    if (tituloQuizz !== null, imagemQuizz !== null, qtdPerguntas !== null, qtdNiveis !== null) {
-        questions.length = qtdPerguntas;
-        levels.length = qtdNiveis;
-
-        meuQuizz = {
-            title: tituloQuizz,
-            image: imagemQuizz
-        };
-    }
 }
 
 function abrirPergunta(clicado) {
     const perguntaAberta = clicado;
     perguntaAberta.classList.add('dentro');
     perguntaAberta.setAttribute('onclick',"");
-    perguntaAberta.innerHTML = `   
-         <h2 class="titulo-secao"> <strong> Pergunta </strong> </h2>      
+    perguntaAberta.innerHTML = `
+         <h2 class="titulo-secao"> <strong> Pergunta </strong> </h2>
          <form>
             <input class="textoPergunta" placeholder="Texto da pergunta"></input>
             <input class="corFundoPergunta" placeholder="Cor de fundo da pergunta"></input>
         </form>
          <h2 class="titulo-secao"> <strong> Resposta Correta </strong> </h2>
-        <form> 
-           <input class="RespostaCorreta r-1" placeholder="Resposta Correta"></input>
-           <input class="ImagemOpcao" placeholder="URL da imagem"></input>
+        <form>
+           <input class="RespostaCorreta resp-1" placeholder="Resposta Correta"></input>
+           <input class="ImagemOpcao img-1" placeholder="URL da imagem"></input>
         </form>
          <h2 class="titulo-secao"> <strong> Respostas incorretas </strong> </h2>
          <form>
 
-           <input class="RespostaIncorreta1 r-2" placeholder="Resposta Incorreta 1"></input>
-           <input class="ImagemOpcao" placeholder="URL da imagem 1"></input>
+           <input class="RespostaIncorreta resp-2" placeholder="Resposta Incorreta 1"></input>
+           <input class="ImagemOpcao img-2" placeholder="URL da imagem 1"></input>
 
-          <input class="RespostaIncorreta3 r-3" placeholder="Resposta Incorreta 2"></input>
-          <input class="ImagemOpcao" placeholder="URL da imagem 2"></input>
+          <input class="RespostaIncorreta resp-3" placeholder="Resposta Incorreta 2"></input>
+          <input class="ImagemOpcao img-3" placeholder="URL da imagem 2"></input>
 
-          <input class="RespostaIncorreta3 r-4" placeholder="Resposta Incorreta 3"></input>
-          <input class="ImagemOpcao" placeholder="URL da imagem 3"></input>
+          <input class="RespostaIncorreta resp-4" placeholder="Resposta Incorreta 3"></input>
+          <input class="ImagemOpcao img-4" placeholder="URL da imagem 3"></input>
 
         </form>`;
 }
 
 function terceiraSecao() {
 
-    validacaoTerceiraSecao();
+    validacaoPerguntas();
 
     container.innerHTML = "";
 
@@ -216,40 +168,97 @@ function terceiraSecao() {
                 <ion-icon name="create-outline"></ion-icon>
             </div>
         `;
-        
+
     }
-    
+
     container.innerHTML += `
         <button class="criar-quizz" onclick= "finaliza()">Finalizar Quizz</button>
     `;
 }
 
-function validacaoTerceiraSecao() {
-    let RespostaCorreta = document.querySelector(".RespostaCorreta").value;
-    let corFundoPergunta = document.querySelector(".corFundoPergunta").value;
-    let ImagemOpcao = document.querySelector(".ImagemOpcao").value;
-    let RespostaIncorreta1 = document.querySelector(".RespostaIncorreta1").value;
-    let RespostaIncorreta2 = document.querySelector(".RespostaIncorreta2").value;
-    let RespostaIncorreta3 = document.querySelector(".RespostaIncorreta3").value;
+function validacao() {
+    let tituloQuizz = document.querySelector(".titulo-quizz").value;
+    let imagemQuizz = document.querySelector(".imagem-quizz").value;
+    qtdPerguntas = document.querySelector(".qtd-perguntas").value;
+    qtdNiveis = document.querySelector(".qtd-niveis").value;
 
-
-    if (RespostaCorreta !== null, corFundoPergunta !== null, ImagemOpcao !== null, RespostaIncorreta1 !== null, RespostaIncorreta2 !== null, RespostaIncorreta3 !== null) {
-        // questions.length = qtdPerguntas;
+    if (tituloQuizz !== null, imagemQuizz !== null, qtdPerguntas !== null, qtdNiveis !== null) {
+        questions.length = qtdPerguntas;
         levels.length = qtdNiveis;
 
-        // meuQuizz = {
-        //     title: tituloQuizz,
-        //     image: imagemQuizz
-        // };
+        meuQuizz.title = tituloQuizz;
+        meuQuizz.image = imagemQuizz;
     }
 }
+
+function validacaoPerguntas() {
+    for(let i = 0; i < qtdPerguntas; i++) {
+        let question = {};
+        let listaRespostas = [];
+        let perguntaTitulo = document.querySelector('.p-' + (i + 1) + ' .textoPergunta').value;
+        let perguntaCor = document.querySelector('.p-' + (i + 1) + ' .corFundoPergunta').value;
+
+        for(let index = 0; index < 4; index++) {
+            let listaResposta = {};
+            let respostaAdicionar = document.querySelector('.p-' + (i + 1) + ' .resp-' + (index + 1)).value;
+            let respostaImagem = document.querySelector('.p-' + (i + 1) + ' .img-' + (index + 1)).value;
+            console.log(respostaAdicionar);
+            console.log(respostaImagem);
+
+            if(respostaAdicionar) {
+                listaResposta.text = respostaAdicionar;
+                listaResposta.image = respostaImagem;
+
+                if(index === 0) {
+                    listaResposta.isCorrectAnswer = true;
+                } else {
+                    listaResposta.isCorrectAnswer = false;
+                }
+
+                listaRespostas[index] = listaResposta;
+            }
+        }
+
+        question.title = perguntaTitulo;
+        question.color = perguntaCor;
+        question.answers = listaRespostas;
+
+        console.log(question);
+
+        questions[i] = question;
+    }
+
+    // meuQuizz.questions = questions;
+    console.log(questions);
+    // console.log(meuQuizz);
+}
+
+// function validacaoTerceiraSecao() {
+//     let RespostaCorreta = document.querySelector(".RespostaCorreta").value;
+//     let corFundoPergunta = document.querySelector(".corFundoPergunta").value;
+//     let ImagemOpcao = document.querySelector(".ImagemOpcao").value;
+//     let RespostaIncorreta1 = document.querySelector('.resp-1').value;
+//     let RespostaIncorreta2 = document.querySelector('.resp-2').value;
+//     let RespostaIncorreta3 = document.querySelector('.resp-3').value;
+
+
+//     if (RespostaCorreta !== null, corFundoPergunta !== null, ImagemOpcao !== null, RespostaIncorreta1 !== null, RespostaIncorreta2 !== null, RespostaIncorreta3 !== null) {
+//         // questions.length = qtdPerguntas;
+//         levels.length = qtdNiveis;
+
+//         meuQuizz = {
+//             title: tituloQuizz,
+//             image: imagemQuizz
+//         };
+//     }
+// }
 
 function abrirNivel(clicado) {
     const nivelAberto = clicado;
     nivelAberto.classList.add('dentro')
     console.log(nivelAberto);
-    nivelAberto.innerHTML = `   
-         <h2 class="titulo-secao"> <strong> Nível </strong> </h2>      
+    nivelAberto.innerHTML = `
+         <h2 class="titulo-secao"> <strong> Nível </strong> </h2>
          <form>
             <input class="textoNivel" placeholder="Título do nível"></input>
             <input class="porcentagemAcertoMinimo" placeholder="% de acerto mínimo"></input>
@@ -260,49 +269,17 @@ function abrirNivel(clicado) {
 }
 
 function finaliza() {
-    
+
     container.innerHTML = "";
     container.innerHTML = `
         <h2 class="titulo-secao"> <strong>Seu quizz está pronto!</strong> </h2>
         <div class="preview" >
-            <img src="${meuQuizz.image}" />  
+            <img src="${meuQuizz.image}" />
             <p>${meuQuizz.title}</p>
             <button class="botaoFinal">Acessar Quizz</button>
             <button class="botaoFinal botaoCinza">Voltar pra home</button>
             </div>
-            
+
         `;
         console.log(meuQuizz);
     }
-  
-
-// function abrirQuizz(resposta) {
-//     console.log(resposta.data)
-
-//     containerMaior.innerHTML = `
-//     <div class="perguntas">
-//         <div class="containerPerguntas">
-//             <div class="cabecalho">
-//                 <p>${resposta.data.title}</p>
-//             </div>`
-//             const perguntasQuizz = resposta.data.questions;
-//             for(let i = 0; i < perguntasQuizz.length; i++) {
-//                 containerMaior.innerHTML +=
-//                     `<div class="caixaPergunta">
-//                         <div class="pergunta">${perguntasQuizz[i].title}</div>
-//                         <ul class="opcoes">`
-//                         const respostasPergunta = perguntasQuizz[i].answers;
-//                         for(let index = 0; index < respostasPergunta.length; index++) { 
-//                             containerMaior.innerHTML += `
-//                             <li class="${respostasPergunta[index].isCorrectAnswer} opcao" onclick="marcarOpcao(${respostasPergunta[index].isCorrectAnswer})">
-//                                 <img src="${respostasPergunta[index].image}" alt=""/>
-//                                 <p>${respostasPergunta[index].text}</p>
-//                             </li>`
-//                         }
-//             }
-//             contaicontainerMaior.innerHTML += `
-//                         </ul>
-//                     </div>
-//                 </div>
-//             </div>`
-// }
