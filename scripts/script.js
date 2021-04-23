@@ -8,9 +8,6 @@ const containerMaior = document.querySelector(".container-maior");
 let numero;
 let qtdPerguntas;
 let qtdNiveis;
-let question = {}
-let listaRespostas = [];
-let listaResposta = {};
 
 pegandoQuizzes();
 
@@ -157,7 +154,7 @@ function abrirPergunta(clicado) {
 
 function terceiraSecao() {
 
-    // validacaoTerceiraSecao();
+    validacaoPerguntas();
 
     container.innerHTML = "";
 
@@ -196,17 +193,23 @@ function validacao() {
 
 function validacaoPerguntas() {
     for(let i = 0; i < qtdPerguntas; i++) {
+        let question = {};
+        let listaRespostas = [];
         let perguntaTitulo = document.querySelector('.p-' + (i + 1) + ' .textoPergunta').value;
         let perguntaCor = document.querySelector('.p-' + (i + 1) + ' .corFundoPergunta').value;
 
-        for(index = 0; index < 4; index++) {
-            let = document.querySelector('.p-' + (i + 1) + ' .resp-' + (index + 1)).value;
+        for(let index = 0; index < 4; index++) {
+            let listaResposta = {};
+            let respostaAdicionar = document.querySelector('.p-' + (i + 1) + ' .resp-' + (index + 1)).value;
             let respostaImagem = document.querySelector('.p-' + (i + 1) + ' .img-' + (index + 1)).value;
+            console.log(respostaAdicionar);
+            console.log(respostaImagem);
 
             if(respostaAdicionar) {
                 listaResposta.text = respostaAdicionar;
                 listaResposta.image = respostaImagem;
-                if(index = 0) {
+
+                if(index === 0) {
                     listaResposta.isCorrectAnswer = true;
                 } else {
                     listaResposta.isCorrectAnswer = false;
@@ -220,33 +223,35 @@ function validacaoPerguntas() {
         question.color = perguntaCor;
         question.answers = listaRespostas;
 
+        console.log(question);
+
         questions[i] = question;
     }
 
-    meuQuizz.questions = questions;
+    // meuQuizz.questions = questions;
     console.log(questions);
-    console.log(meuQuizz);
+    // console.log(meuQuizz);
 }
 
-function validacaoTerceiraSecao() {
-    let RespostaCorreta = document.querySelector(".RespostaCorreta").value;
-    let corFundoPergunta = document.querySelector(".corFundoPergunta").value;
-    let ImagemOpcao = document.querySelector(".ImagemOpcao").value;
-    let RespostaIncorreta1 = document.querySelector('.resp-1').value;
-    let RespostaIncorreta2 = document.querySelector('.resp-2').value;
-    let RespostaIncorreta3 = document.querySelector('.resp-3').value;
+// function validacaoTerceiraSecao() {
+//     let RespostaCorreta = document.querySelector(".RespostaCorreta").value;
+//     let corFundoPergunta = document.querySelector(".corFundoPergunta").value;
+//     let ImagemOpcao = document.querySelector(".ImagemOpcao").value;
+//     let RespostaIncorreta1 = document.querySelector('.resp-1').value;
+//     let RespostaIncorreta2 = document.querySelector('.resp-2').value;
+//     let RespostaIncorreta3 = document.querySelector('.resp-3').value;
 
 
-    if (RespostaCorreta !== null, corFundoPergunta !== null, ImagemOpcao !== null, RespostaIncorreta1 !== null, RespostaIncorreta2 !== null, RespostaIncorreta3 !== null) {
-        // questions.length = qtdPerguntas;
-        levels.length = qtdNiveis;
+//     if (RespostaCorreta !== null, corFundoPergunta !== null, ImagemOpcao !== null, RespostaIncorreta1 !== null, RespostaIncorreta2 !== null, RespostaIncorreta3 !== null) {
+//         // questions.length = qtdPerguntas;
+//         levels.length = qtdNiveis;
 
-        meuQuizz = {
-            title: tituloQuizz,
-            image: imagemQuizz
-        };
-    }
-}
+//         meuQuizz = {
+//             title: tituloQuizz,
+//             image: imagemQuizz
+//         };
+//     }
+// }
 
 function abrirNivel(clicado) {
     const nivelAberto = clicado;
