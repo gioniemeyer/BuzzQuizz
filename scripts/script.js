@@ -50,16 +50,20 @@ function renderizarQuizz(resposta) {
         </div>`;
 
             let perguntasQuizz = resposta.data.questions;
-            for(let i = 0; i < resposta.data.length; i++) {
+            for(let i = 0; i < perguntasQuizz.length; i++) {
                 caixaPergunta.innerHTML += `
-                <div class="pergunta">${perguntasQuizz[i].title}
+                <div class="pergunta p-${i}">${perguntasQuizz[i].title}
                     <ul class="opcoes"></ul>
                 </div>`;
 
-                let opcoes = document.querySelector('.opcoes');
+                let opcoes = caixaPergunta.querySelector(`.p-${i} ul`);
                 let respostasPergunta = perguntasQuizz[i].answers;
 
+                console.log(opcoes);
+                console.log(respostasPergunta);
+
                 for(let index = 0; index < respostasPergunta.length; index++) {
+                    console.log('tá rodando?');
                     opcoes.innerHTML += `
                     <li class="${respostasPergunta[index].isCorrectAnswer} opcao" onclick="marcarOpcao(${respostasPergunta[index].isCorrectAnswer})">
                         <img src="${respostasPergunta[index].image}" alt=""/>
@@ -274,7 +278,7 @@ function validacaoFinal() {
 
         nivelPorcentagem = parseInt(nivelPorcentagem);
     
-        if(nivelTitulo.length > 9 && -1 < nivelPorcentagem < 101 && nivelDescricao.length > 29) {
+        if(nivelTitulo.length > 9 && -1 < nivelPorcentagem < 101 && nivelDescricao.length > 29 && typeof(nivelPorcentagem) === "number") {
             level.title = nivelTitulo;
             level.image = nivelImagem;
             level.text = nivelDescricao;
@@ -292,6 +296,8 @@ function validacaoFinal() {
     meuQuizz.levels = levels;
     console.log(levels);
     console.log(meuQuizz);
+
+    // const promessa = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes', meuQuizz);
 
     finaliza();
 }
