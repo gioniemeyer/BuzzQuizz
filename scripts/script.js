@@ -127,7 +127,7 @@ function segundaSecao() {
 
 function terceiraSecao() {
 
-    validacaoPerguntas();
+   validacaoPerguntas();
 
 }
 
@@ -188,13 +188,13 @@ function abrirPergunta(clicado) {
          <h2 class="titulo-secao"> <strong> Respostas incorretas </strong> </h2>
          <form>
 
-           <input class="RespostaIncorreta r-2" placeholder="Resposta Incorreta 1"></input>
+           <input class="RespostaIncorreta1 r-2" placeholder="Resposta Incorreta 1"></input>
            <input class="ImagemOpcao" placeholder="URL da imagem 1"></input>
 
-          <input class="RespostaIncorreta r-3" placeholder="Resposta Incorreta 2"></input>
+          <input class="RespostaIncorreta3 r-3" placeholder="Resposta Incorreta 2"></input>
           <input class="ImagemOpcao" placeholder="URL da imagem 2"></input>
 
-          <input class="RespostaIncorreta r-4" placeholder="Resposta Incorreta 3"></input>
+          <input class="RespostaIncorreta3 r-4" placeholder="Resposta Incorreta 3"></input>
           <input class="ImagemOpcao" placeholder="URL da imagem 3"></input>
 
         </form>`;
@@ -230,7 +230,7 @@ function validacaoTerceiraSecao() {
     let ImagemOpcao = document.querySelector(".ImagemOpcao").value;
     let RespostaIncorreta1 = document.querySelector(".RespostaIncorreta1").value;
     let RespostaIncorreta2 = document.querySelector(".RespostaIncorreta2").value;
-    let RespostaIncorreta3 = document.querySelector(".RespostaIncorreta2").value;
+    let RespostaIncorreta3 = document.querySelector(".RespostaIncorreta3").value;
 
 
     if (RespostaCorreta !== null, corFundoPergunta !== null, ImagemOpcao !== null, RespostaIncorreta1 !== null, RespostaIncorreta2 !== null, RespostaIncorreta3 !== null) {
