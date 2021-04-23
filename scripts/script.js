@@ -41,7 +41,6 @@ function escolherQuizz(quizzClicado) {
 
 function teste(resposta) {
     const caixaPergunta = document.querySelector('.caixaPergunta');
-
     containerMaior.innerHTML = `
         <div class="perguntas">
             <div class="cabecalho">
@@ -169,7 +168,6 @@ function abrirPergunta(clicado) {
         </form>`;
 }
 
-
 function terceiraSecao() {
 
     validacaoTerceiraSecao();
@@ -193,8 +191,6 @@ function terceiraSecao() {
         <button class="criar-quizz" onclick= "finaliza()">Finalizar Quizz</button>
     `;
 }
-
-
 
 function validacaoTerceiraSecao() {
     let RespostaCorreta = document.querySelector(".RespostaCorreta").value;
@@ -231,9 +227,22 @@ function abrirNivel(clicado) {
          `;
 }
 
-
-
-
+function finaliza() {
+    
+    container.innerHTML = "";
+    container.innerHTML = `
+        <h2 class="titulo-secao"> <strong>Seu quizz está pronto!</strong> </h2>
+        <div class="preview" >
+            <img src="${meuQuizz.image}" />  
+            <p>${meuQuizz.title}</p>
+            <button class="botaoFinal">Acessar Quizz</button>
+            <button class="botaoFinal botaoCinza">Voltar pra home</button>
+            </div>
+            
+        `;
+        console.log(meuQuizz);
+    }
+  
 
 // function abrirQuizz(resposta) {
 //     console.log(resposta.data)
