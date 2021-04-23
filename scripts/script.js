@@ -225,8 +225,18 @@ function validacaoPerguntas() {
         let listaRespostas = [];
         let perguntaTitulo = document.querySelector('.p-' + (i + 1) + ' .textoPergunta').value;
         let perguntaCor = document.querySelector('.p-' + (i + 1) + ' .corFundoPergunta').value;
+        let checkCor;
 
-        if(perguntaTitulo.length > 19) {
+        
+        if(perguntaCor.length = 7 && perguntaCor[0] === '#') {
+            checkCor = true;
+        } else {
+            checkCor = false;
+        }
+
+        console.log(checkCor);
+
+        if(perguntaTitulo.length > 19 && checkCor) {
 
             for(let index = 0; index < 4; index++) {
                 let listaResposta = {};
@@ -299,7 +309,7 @@ function validacaoFinal() {
     console.log(meuQuizz);
 
     // const requisicao = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes', meuQuizz);
-    // requisicao.then(finalizar)
+    // requisicao.then(finalizar);
 
     finaliza();
 }
@@ -319,3 +329,7 @@ function finaliza() {
         `;
         console.log(meuQuizz);
     }
+
+    // function checkImgOnline(imagemURL) {
+    //     let img = new image()
+    // }
