@@ -7,6 +7,8 @@ const containerMaior = document.querySelector(".container-maior");
 let numero;
 let qtdPerguntas;
 let qtdNiveis;
+const levels = [];
+
 
 pegandoQuizzes();
 
@@ -235,7 +237,17 @@ function validacao() {
     qtdNiveis = parseInt(qtdNiveis);
     let tamanhoTituloQuizz = tituloQuizz.length;
 
-    if (19 < tamanhoTituloQuizz < 66 && imagemQuizz && typeof(qtdPerguntas) === "number" && qtdPerguntas > 2 && typeof(qtdNiveis && qtdPerguntas > 1) ) {
+    function testeUrl(url){
+        let padraoUrl = new RegExp('^(https?:\\/\\/)?'+
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+
+        '((\\d{1,3}\\.){3}\\d{1,3}))'+
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+
+        '(\\?[;&a-z\\d%_.~+=-]*)?'+
+        '(\\#[-a-z\\d_]*)?$','i');
+      return !!padraoUrl.test(url);
+    }
+
+    if (19 < tamanhoTituloQuizz < 66 && testeUrl(imagemQuizz) && typeof(qtdPerguntas) === "number" && qtdPerguntas > 2 && typeof(qtdNiveis && qtdPerguntas > 1) ) {
         
         questions.length = qtdPerguntas;
         levels.length = qtdNiveis;
@@ -276,17 +288,17 @@ function validacaoPerguntas() {
                 let respostaAdicionar = document.querySelector('.p-' + (i + 1) + ' .resp-' + (index + 1)).value;
                 let respostaImagem = document.querySelector('.p-' + (i + 1) + ' .img-' + (index + 1)).value;
 
-                function testeUrl(respostaImagem){
+                function testeUrl(url){
                     let padraoUrl = new RegExp('^(https?:\\/\\/)?'+
                     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+
                     '((\\d{1,3}\\.){3}\\d{1,3}))'+
                     '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+
                     '(\\?[;&a-z\\d%_.~+=-]*)?'+
                     '(\\#[-a-z\\d_]*)?$','i');
-                  return !!padraoUrl.test(respostaImagem);
+                  return !!padraoUrl.test(url);
                 }
 
-                if(respostaAdicionar && testeUrl) {
+                if(respostaAdicionar && testeUrl(respostaImagem)) {
                     listaResposta.text = respostaAdicionar;   
                     listaResposta.image = respostaImagem;
 
@@ -324,7 +336,6 @@ function validacaoPerguntas() {
 function validacaoFinal() {
     for(let i = 0; i < qtdNiveis; i++) {
 
-        const levels = [];
         let level = {};
         let nivelTitulo = document.querySelector('.n-' + (i + 1) + ' .textoNivel').value;
         let nivelPorcentagem = document.querySelector('.n-' + (i + 1) + ' .porcentagemAcertoMinimo').value;
@@ -332,8 +343,18 @@ function validacaoFinal() {
         let nivelDescricao = document.querySelector('.n-' + (i + 1) + ' .descricao').value;
 
         nivelPorcentagem = parseInt(nivelPorcentagem);
+
+        function testeUrl(url){
+            let padraoUrl = new RegExp('^(https?:\\/\\/)?'+
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+
+            '((\\d{1,3}\\.){3}\\d{1,3}))'+
+            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+
+            '(\\?[;&a-z\\d%_.~+=-]*)?'+
+            '(\\#[-a-z\\d_]*)?$','i');
+          return !!padraoUrl.test(url);
+        }
     
-        if(nivelTitulo.length > 9 && -1 < nivelPorcentagem < 101 && nivelDescricao.length > 29 && typeof(nivelPorcentagem) === "number") {
+        if(nivelTitulo.length > 9 && -1 < nivelPorcentagem < 101 && testeUrl(nivelImagem) && nivelDescricao.length > 29 && typeof(nivelPorcentagem) === "number") {
             level.title = nivelTitulo;
             level.image = nivelImagem;
             level.text = nivelDescricao;
@@ -371,5 +392,4 @@ function finaliza() {
             </div>
 
         `;
-        alert('fooooooooooooooi')
     }
