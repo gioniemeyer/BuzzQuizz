@@ -258,15 +258,35 @@ function validacaoPerguntas() {
         let listaRespostas = [];
         let perguntaTitulo = document.querySelector('.p-' + (i + 1) + ' .textoPergunta').value;
         let perguntaCor = document.querySelector('.p-' + (i + 1) + ' .corFundoPergunta').value;
+        let checkCor;
 
-        if(perguntaTitulo.length > 19) {
+        
+        if(perguntaCor.length = 7 && perguntaCor[0] === '#') {
+            checkCor = true;
+        } else {
+            checkCor = false;
+        }
+
+        console.log(checkCor);
+
+        if(perguntaTitulo.length > 19 && checkCor) {
 
             for(let index = 0; index < 4; index++) {
                 let listaResposta = {};
                 let respostaAdicionar = document.querySelector('.p-' + (i + 1) + ' .resp-' + (index + 1)).value;
                 let respostaImagem = document.querySelector('.p-' + (i + 1) + ' .img-' + (index + 1)).value;
 
-                if(respostaAdicionar && respostaImagem) {
+                function testeUrl(respostaImagem){
+                    let padraoUrl = new RegExp('^(https?:\\/\\/)?'+
+                    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+
+                    '((\\d{1,3}\\.){3}\\d{1,3}))'+
+                    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+
+                    '(\\?[;&a-z\\d%_.~+=-]*)?'+
+                    '(\\#[-a-z\\d_]*)?$','i');
+                  return !!padraoUrl.test(respostaImagem);
+                }
+
+                if(respostaAdicionar && testeUrl) {
                     listaResposta.text = respostaAdicionar;   
                     listaResposta.image = respostaImagem;
 
@@ -296,7 +316,7 @@ function validacaoPerguntas() {
 
         questions[i] = question;
     }
-
+        meuQuizz.questions = questions;
         terceiraSecao()    
 
 }
@@ -332,9 +352,10 @@ function validacaoFinal() {
     console.log(levels);
     console.log(meuQuizz);
 
-    // const promessa = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes', meuQuizz);
+    const requisicao = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes', meuQuizz);
+    requisicao.then(finaliza);
+    requisicao.catch(alert);
 
-    finaliza();
 }
 
 function finaliza() {
@@ -350,5 +371,5 @@ function finaliza() {
             </div>
 
         `;
-        console.log(meuQuizz);
+        alert('fooooooooooooooi')
     }
