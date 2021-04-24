@@ -2,7 +2,6 @@ const ul = document.querySelector('ul');
 const container = document.querySelector(".container");
 let meuQuizz = {};
 const questions = [];
-const levels = [];
 const perguntas  = document.querySelector(".perguntas");
 const containerMaior = document.querySelector(".container-maior");
 let numero;
@@ -40,6 +39,7 @@ function escolherQuizz(quizzClicado) {
 }
 
 function renderizarQuizz(resposta) {
+    ;
     containerMaior.innerHTML = `
         <div class="perguntas">
             <div class="cabecalho">
@@ -48,17 +48,15 @@ function renderizarQuizz(resposta) {
             </div>
             <div class="caixaPergunta"></div>
         </div>`;
-        
-        const caixaPergunta = document.querySelector('.caixaPergunta');
-
+  const caixaPergunta = document.querySelector('.caixaPergunta')
             let perguntasQuizz = resposta.data.questions;
             for(let i = 0; i < perguntasQuizz.length; i++) {
                 caixaPergunta.innerHTML += `
-                <div class="pergunta p-${i}">${perguntasQuizz[i].title}
+                <div class="pergunta ">${perguntasQuizz[i].title}</div>
                     <ul class="opcoes"></ul>
-                </div>`;
+                `;
 
-                let opcoes = caixaPergunta.querySelector(`.p-${i} ul`);
+                let opcoes = caixaPergunta.querySelector(` ul`);
                 let respostasPergunta = perguntasQuizz[i].answers;
 
                 console.log(opcoes);
@@ -213,7 +211,7 @@ function validacao() {
         segundaSecao();
 
     } else {
-        alert("Alguma infornmação não foi preenchida corretamente, tente novamente!")
+        alert("Alguma infornmação não foi preenchida corretamente, tente novamente!");
         return
     }
 }
@@ -291,6 +289,7 @@ function validacaoPerguntas() {
 function validacaoFinal() {
     for(let i = 0; i < qtdNiveis; i++) {
 
+        const levels = [];
         let level = {};
         let nivelTitulo = document.querySelector('.n-' + (i + 1) + ' .textoNivel').value;
         let nivelPorcentagem = document.querySelector('.n-' + (i + 1) + ' .porcentagemAcertoMinimo').value;
