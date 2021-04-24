@@ -185,9 +185,6 @@ input:placeholder-shown {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    
 }
 
 .cabecalho img{
@@ -195,7 +192,6 @@ input:placeholder-shown {
     z-index: 1;
     position: relative;
 }
-
 
 .cabecalho p{
     z-index: 2;
@@ -211,12 +207,13 @@ input:placeholder-shown {
     height: 676px;
     background:#fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
-    margin-top: 30px;
+    margin-top: 90px;
     display: flex;
     flex-direction: column;
     align-items:center ;
     justify-content: center;
     padding:0px 35px;
+    margin-bottom: 100px;
     
 }
 

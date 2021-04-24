@@ -39,24 +39,28 @@ function escolherQuizz(quizzClicado) {
 }
 
 function renderizarQuizz(resposta) {
-    ;
-    containerMaior.innerHTML = `
+    container.innerHTML ="";
+    container.innerHTML = `
         <div class="perguntas">
             <div class="cabecalho">
                 <img src="${resposta.data.image}" />
                 <p>${resposta.data.title}</p>
             </div>
-            <div class="caixaPergunta"></div>
-        </div>`;
+              <div class="caixaMae"
+              
+            </div>
+       </div>`;
+  const caixaMae = document.querySelector('.caixaMae')
   const caixaPergunta = document.querySelector('.caixaPergunta')
             let perguntasQuizz = resposta.data.questions;
             for(let i = 0; i < perguntasQuizz.length; i++) {
-                caixaPergunta.innerHTML += `
-                <div class="pergunta ">${perguntasQuizz[i].title}</div>
-                    <ul class="opcoes"></ul>
-                `;
-
-                let opcoes = caixaPergunta.querySelector(` ul`);
+                caixaMae.innerHTML += `
+                <div class="caixaPergunta">
+                  <div class="pergunta ">${perguntasQuizz[i].title}</div>
+                  <ul class="opcoes p-${i}"></ul>
+                </div>`;
+                
+                let opcoes = caixaMae.querySelector(`.p-${i}`);
                 let respostasPergunta = perguntasQuizz[i].answers;
 
                 console.log(opcoes);
@@ -72,6 +76,37 @@ function renderizarQuizz(resposta) {
                 }
             }
 }
+
+{/* <div class="perguntas">
+            <div class="cabecalho">
+                <img src="midias/Rectangle 42.png" />
+                <p>O quão Potterhead é você?</p>
+            </div>
+
+        <div class="caixaMae"
+            <div class="caixaPergunta">
+                <div class="pergunta">Em qual animal Olho-Tonto Moody transfigurou Malfoy?</div>
+                <ul class="opcoes">
+                    <li class="opcao">
+                        <img src="midias/image 3.png" alt="" />
+                        <p>Gatineo</p>
+                    </li>
+                    <li class="opcao">
+                        <img src="midias/image 3.png" alt="" />
+                        <p>Gatineo</p>
+                    </li>
+                    <li class="opcao">
+                        <img src="midias/image 3.png" alt="" />
+                        <p>Gatineo</p>
+                    </li>
+                    <li class="opcao">
+                        <img src="midias/image 3.png" alt="" />
+                        <p>Gatineo</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>  */}
 
 function marcarOpcao(isTrue) {
     if(isTrue) {
