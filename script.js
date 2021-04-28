@@ -23,9 +23,9 @@ function renderizarHome(resposta) {
         for(let i = 0; i < listaQuizzes.length; i++) { 
             containerListaQuizzes.innerHTML += `
 
-                    <div class="quizz" onclick="abrirQuizz()">
+                    <div class="quizz" onclick="abrirQuizz(${listaQuizzes[i].id})">
                         <img src="${listaQuizzes[i].image}" alt="">
-                        <p> <strong> Nome Quizz Testando Testando Testando lalalalalalallaalalalalala</strong> </p>
+                        <p> <strong>${listaQuizzes[i].title}</strong> </p>
                     </div>
                 
                 `
